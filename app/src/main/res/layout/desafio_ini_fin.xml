@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/fondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/rojogoogleP"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/modo"
+        style="@style/SombreadoTexto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/mode_desafio"
+        android:textColor="@color/blanco"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/cuenta_atras"
+        style="@style/SombreadoTexto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/blanco"
+        android:textSize="180sp"
+        android:visibility="gone" />
+</FrameLayout>

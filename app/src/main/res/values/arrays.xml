@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Array de las categorias -->
+    <string-array name="categorias">
+        <item>Aventuras Gráficas y RPG</item>
+        <item>Estrategia y MOBA</item>
+        <item>Lucha</item>
+        <item>Acción, Aventuras y Plataformas</item>
+        <item>Shooter</item>
+        <item>Deportes</item>
+        <item>Otros</item>
+    </string-array>
+
+    <!-- Array del nivel de dificultad de las preguntas -->
+    <string-array name="dificultad">
+        <item>Fácil</item>
+        <item>Normal</item>
+        <item>Difícil</item>
+        <item>Muy difícil</item>
+    </string-array>
+
+    <!-- Array del menu lateral -->
+    <string-array name="Opciones">
+        <item>Estadisticas</item>
+        <item>Enviar Pregunta</item>
+        <item>Opciones</item>
+        <item>Acerca de</item>
+    </string-array>
+
+</resources>

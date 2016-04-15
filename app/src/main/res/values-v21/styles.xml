@@ -1,0 +1,8 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimaryDark">@color/rojogoogleP</item>
+        <item name="android:colorPrimary">@color/rojogoogleN</item>
+    </style>
+
+</resources>
