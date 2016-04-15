@@ -509,6 +509,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         }
     }
 
+
     ////////////////////////////////////////PERMISOS///////////////////////////////////////////////
 
     /**
