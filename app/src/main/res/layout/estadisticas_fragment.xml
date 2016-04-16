@@ -1,7 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="end"
     android:orientation="vertical">
 
     <TextView
@@ -11,169 +10,130 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/estadisticas"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/blanco"
         android:textSize="28sp" />
 
-    <ScrollView
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/preguntas_respondidas" />
+
+        <TextView
+            android:id="@+id/respondidas"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/preguntas_acertadas" />
+
+        <TextView
+            android:id="@+id/acertadas"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/categoria_RPG" />
+
+        <TextView
+            android:id="@+id/rpg_aventras_graficas"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/categoria_Estrategia" />
+
+        <TextView
+            android:id="@+id/estrategia"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/categoria_Lucha" />
+
+        <TextView
+            android:id="@+id/lucha"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/categoria_Plataformas" />
+
+        <TextView
+            android:id="@+id/plataformas_aventuras"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/categoria_Shooter" />
+
+        <TextView
+            android:id="@+id/shooter"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/categoria_Deportes" />
+
+        <TextView
+            android:id="@+id/deportes"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EstadisticasLinearLayout">
+
+        <TextView
+            style="@style/EstadisticasTextViewDato"
+            android:text="@string/categoria_Otros" />
+
+        <TextView
+            android:id="@+id/otros"
+            style="@style/EstadisticasTextViewPorcentaje" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/aceptar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/preguntas_respondidas" />
-
-                <TextView
-                    android:id="@+id/respondidas"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/preguntas_acertadas" />
-
-                <TextView
-                    android:id="@+id/acertadas"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/categoria_RPG" />
-
-                <TextView
-                    android:id="@+id/rpg_aventras_graficas"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/categoria_Estrategia" />
-
-                <TextView
-                    android:id="@+id/estrategia"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/categoria_Lucha" />
-
-                <TextView
-                    android:id="@+id/lucha"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/categoria_Plataformas" />
-
-                <TextView
-                    android:id="@+id/plataformas_aventuras"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/categoria_Shooter" />
-
-                <TextView
-                    android:id="@+id/shooter"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/categoria_Deportes" />
-
-                <TextView
-                    android:id="@+id/deportes"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView
-                    style="@style/TextoEstadisticas"
-                    android:text="@string/categoria_Otros" />
-
-                <TextView
-                    android:id="@+id/otros"
-                    style="@style/DatosEstadisticas"
-                    android:text="Resultado 1" />
-
-            </TableRow>
-
-            <Button
-                android:id="@+id/aceptar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/boton"
-                android:gravity="center"
-                android:padding="20dp"
-                android:text="@string/aceptar"
-                android:textAllCaps="true"
-                android:textColor="@color/blanco"
-                android:textSize="20sp" />
-
-        </TableLayout>
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/boton"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/aceptar"
+        android:textAllCaps="true"
+        android:textColor="@color/blanco"
+        android:textSize="20sp" />
 
 </LinearLayout>

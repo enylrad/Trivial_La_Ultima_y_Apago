@@ -119,5 +119,6 @@
 
     <string name="acercade">Acerca de</string>
     <string name="invitado">Invitado</string>
+    <string name="ejemplo_porcentaje">0%</string>
 
 </resources>
