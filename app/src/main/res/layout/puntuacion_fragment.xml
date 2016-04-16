@@ -34,12 +34,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/TextoEstadisticas"
                     android:text="@string/fallos" />
 
                 <TextView
                     android:id="@+id/txtnumfallos"
-                    style="@style/DatosEstadisticas"
                     android:text="Resultado 1"
                     android:textColor="@color/firebrick" />
 
@@ -50,12 +48,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/TextoEstadisticas"
                     android:text="@string/aciertos" />
 
                 <TextView
                     android:id="@+id/txtnumaciertos"
-                    style="@style/DatosEstadisticas"
                     android:text="Resultado 1"
                     android:textColor="@color/verde" />
 
@@ -66,12 +62,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/TextoEstadisticas"
                     android:text="@string/aciertosseguidos" />
 
                 <TextView
                     android:id="@+id/txtnumconsecutivos"
-                    style="@style/DatosEstadisticas"
                     android:text="Resultado 1"
                     android:textColor="@color/negro" />
 
@@ -82,12 +76,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/TextoEstadisticas"
                     android:text="@string/sumados" />
 
                 <TextView
                     android:id="@+id/txtsuma"
-                    style="@style/DatosEstadisticas"
                     android:text="Resultado 1"
                     android:textColor="@color/verde" />
 
@@ -98,12 +90,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/TextoEstadisticas"
                     android:text="@string/restados" />
 
                 <TextView
                     android:id="@+id/txtrestados"
-                    style="@style/DatosEstadisticas"
                     android:text="Resultado 1"
                     android:textColor="@color/firebrick" />
 

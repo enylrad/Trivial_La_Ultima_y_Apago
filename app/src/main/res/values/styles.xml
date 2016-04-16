@@ -20,7 +20,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:weightSum">100</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
     </style>
 
     <style name="EstadisticasTextViewDato">
@@ -29,6 +32,10 @@
         <item name="android:layout_weight">70</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:textSize">22sp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">3</item>
+        <item name="android:shadowDy">3</item>
+        <item name="android:shadowRadius">3</item>
     </style>
 
     <style name="EstadisticasTextViewPorcentaje">

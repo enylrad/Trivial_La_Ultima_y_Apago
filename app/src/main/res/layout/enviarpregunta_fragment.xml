@@ -33,7 +33,6 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/EnviarPreguntaTexto"
                     android:text="@string/preg" />
 
                 <EditText
@@ -55,12 +54,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/EnviarPreguntaTexto"
                     android:text="@string/resp1" />
 
                 <EditText
                     android:id="@+id/editresp1"
-                    style="@style/EnviarPreguntaDatos"
                     android:hint="@string/resp1_hint" />
 
             </TableRow>
@@ -70,12 +67,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/EnviarPreguntaTexto"
                     android:text="@string/resp2" />
 
                 <EditText
                     android:id="@+id/editresp2"
-                    style="@style/EnviarPreguntaDatos"
                     android:hint="@string/resp2_hint" />
 
             </TableRow>
@@ -85,12 +80,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/EnviarPreguntaTexto"
                     android:text="@string/resp3" />
 
                 <EditText
                     android:id="@+id/editresp3"
-                    style="@style/EnviarPreguntaDatos"
                     android:hint="@string/resp3_hint" />
 
             </TableRow>
@@ -100,12 +93,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/EnviarPreguntaTexto"
                     android:text="@string/resp4" />
 
                 <EditText
                     android:id="@+id/editresp4"
-                    style="@style/EnviarPreguntaDatos"
                     android:hint="@string/resp4_hint" />
 
             </TableRow>
@@ -115,7 +106,6 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/EnviarPreguntaTexto"
                     android:text="@string/dificultad" />
 
                 <Spinner
@@ -130,7 +120,6 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/EnviarPreguntaTexto"
                     android:text="@string/categoria" />
 
                 <Spinner
@@ -145,12 +134,10 @@
                 android:minHeight="40dp">
 
                 <TextView
-                    style="@style/EnviarPreguntaTexto"
                     android:text="@string/juego" />
 
                 <EditText
                     android:id="@+id/editjuego"
-                    style="@style/EnviarPreguntaDatos"
                     android:hint="@string/franquicia_hint" />
 
             </TableRow>

@@ -47,7 +47,6 @@
 
         <Button
             android:id="@+id/desafio"
-            style="@style/BotonMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
@@ -62,7 +61,6 @@
 
             <ImageButton
                 android:id="@+id/logrosA"
-                style="@style/BotonMenu"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_margin="1dp"
@@ -75,7 +73,6 @@
 
             <ImageButton
                 android:id="@+id/logrosD"
-                style="@style/BotonMenu"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_margin="1dp"
@@ -89,7 +86,6 @@
 
             <ImageButton
                 android:id="@+id/marcadA"
-                style="@style/BotonMenu"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_margin="1dp"
@@ -104,7 +100,6 @@
 
             <ImageButton
                 android:id="@+id/marcadD"
-                style="@style/BotonMenu"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_margin="1dp"
@@ -122,7 +117,6 @@
 
         <Button
             android:id="@+id/podcast"
-            style="@style/BotonMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
