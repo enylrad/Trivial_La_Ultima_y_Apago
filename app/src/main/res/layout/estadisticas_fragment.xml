@@ -1,11 +1,13 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/cabecera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:background="@color/rojogoogleP"
         android:gravity="center"
         android:padding="10dp"
@@ -13,118 +15,128 @@
         android:textColor="@color/blanco"
         android:textSize="28sp" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/aceptar"
+        android:layout_below="@+id/cabecera"
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/preguntas_respondidas" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/respondidas"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/preguntas_respondidas" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/respondidas"
+                style="@style/EstadisticasTextViewPorcentaje" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+        </LinearLayout>
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/preguntas_acertadas" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/acertadas"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/preguntas_acertadas" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/acertadas"
+                style="@style/EstadisticasTextViewPorcentaje" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+        </LinearLayout>
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/categoria_RPG" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/rpg_aventras_graficas"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/categoria_RPG" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/rpg_aventras_graficas"
+                style="@style/EstadisticasTextViewPorcentaje" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+        </LinearLayout>
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/categoria_Estrategia" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/estrategia"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/categoria_Estrategia" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/estrategia"
+                style="@style/EstadisticasTextViewPorcentaje" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+        </LinearLayout>
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/categoria_Lucha" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/lucha"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/categoria_Lucha" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/lucha"
+                style="@style/EstadisticasTextViewPorcentaje" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+        </LinearLayout>
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/categoria_Plataformas" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/plataformas_aventuras"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/categoria_Plataformas" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/plataformas_aventuras"
+                style="@style/EstadisticasTextViewPorcentaje" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+        </LinearLayout>
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/categoria_Shooter" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/shooter"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/categoria_Shooter" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/shooter"
+                style="@style/EstadisticasTextViewPorcentaje" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+        </LinearLayout>
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/categoria_Deportes" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/deportes"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/categoria_Deportes" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/deportes"
+                style="@style/EstadisticasTextViewPorcentaje" />
 
-    <LinearLayout style="@style/EstadisticasLinearLayout">
+        </LinearLayout>
 
-        <TextView
-            style="@style/EstadisticasTextViewDato"
-            android:text="@string/categoria_Otros" />
+        <LinearLayout style="@style/EstadisticasLinearLayout">
 
-        <TextView
-            android:id="@+id/otros"
-            style="@style/EstadisticasTextViewPorcentaje" />
+            <TextView
+                style="@style/EstadisticasTextViewDato"
+                android:text="@string/categoria_Otros" />
 
+            <TextView
+                android:id="@+id/otros"
+                style="@style/EstadisticasTextViewPorcentaje" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/aceptar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
@@ -136,4 +148,4 @@
         android:textColor="@color/blanco"
         android:textSize="20sp" />
 
-</LinearLayout>
+</RelativeLayout>

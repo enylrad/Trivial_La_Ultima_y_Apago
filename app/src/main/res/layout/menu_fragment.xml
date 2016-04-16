@@ -6,20 +6,14 @@
     android:gravity="end"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@+id/tableMenuPrincipal"
         android:layout_alignParentTop="true"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_logo" />
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:padding="60dp"
+        android:src="@drawable/ic_logo" />
 
     <ImageButton
         android:id="@+id/mostrar_menu_lateral"
@@ -49,69 +43,41 @@
             android:id="@+id/desafio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
+            android:layout_marginBottom="1dp"
             android:background="@drawable/boton"
-            android:elevation="5dp"
             android:padding="18dp"
-            android:text="@string/desafio" />
+            android:stateListAnimator="@null"
+            android:text="@string/desafio"
+            android:textColor="@color/blanco" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="100">
 
             <ImageButton
-                android:id="@+id/logrosA"
+                android:id="@+id/logros"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_weight="50"
                 android:background="@drawable/boton"
-                android:elevation="5dp"
                 android:padding="14dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_logros" />
 
             <ImageButton
-                android:id="@+id/logrosD"
+                android:id="@+id/marcad"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@color/gris"
-                android:elevation="5dp"
-                android:padding="14dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_logros"
-                android:visibility="gone" />
-
-            <ImageButton
-                android:id="@+id/marcadA"
-                android:layout_width="0dp"
-                android:layout_height="57dp"
-                android:layout_margin="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginStart="1dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="50"
                 android:background="@drawable/boton"
-                android:elevation="5dp"
                 android:padding="14dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_puntuaciones" />
 
-            <ImageButton
-                android:id="@+id/marcadD"
-                android:layout_width="0dp"
-                android:layout_height="57dp"
-                android:layout_margin="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginStart="1dp"
-                android:layout_weight="1"
-                android:background="@color/gris"
-                android:elevation="5dp"
-                android:padding="14dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_puntuaciones"
-                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -119,18 +85,17 @@
             android:id="@+id/podcast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
             android:background="@drawable/boton"
-            android:elevation="5dp"
             android:padding="18dp"
-            android:text="@string/podcast" />
+            android:stateListAnimator="@null"
+            android:text="@string/podcast"
+            android:textColor="@color/blanco" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/ini_sesion" />
+            android:layout_marginTop="5dp" />
 
         <Button
             android:id="@+id/sign_out_button"

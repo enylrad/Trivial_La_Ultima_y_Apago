@@ -127,6 +127,7 @@ public class BDTrivial extends SQLiteOpenHelper {
 
     /**
      * Metodo que inserta una franquicia ala base de datos
+     *
      * @param id
      * @param franquicia
      */
@@ -149,6 +150,7 @@ public class BDTrivial extends SQLiteOpenHelper {
 
     /**
      * Inserta una pregunta a la base de datos
+     *
      * @param p
      */
     public void insertarPregunta(Pregunta p) {
@@ -181,6 +183,7 @@ public class BDTrivial extends SQLiteOpenHelper {
      * Metodo que busca una pregunta en la base de datos
      * Tambien se llama en ella al metodo marcarPregunta
      * En caso de que esten todas marcadas las resetea
+     *
      * @param result
      * @param numcat
      * @return
@@ -257,6 +260,7 @@ public class BDTrivial extends SQLiteOpenHelper {
 
     /**
      * Este metodo resetea las preguntas marcadas con marcarPregunta
+     *
      * @param numcat
      */
     public void resetearPreguntasCategoria(int numcat) {
@@ -274,6 +278,7 @@ public class BDTrivial extends SQLiteOpenHelper {
     /**
      * Este metodo recibe un String y comprueba si la franquicia existe, si existe devuelve el id
      * de la franquicia.
+     *
      * @param franquicia
      * @return
      */

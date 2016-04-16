@@ -33,8 +33,7 @@
                 android:layout_marginBottom="5dp"
                 android:minHeight="40dp">
 
-                <TextView
-                    android:text="@string/fallos" />
+                <TextView android:text="@string/fallos" />
 
                 <TextView
                     android:id="@+id/txtnumfallos"
@@ -47,8 +46,7 @@
                 android:layout_marginBottom="5dp"
                 android:minHeight="40dp">
 
-                <TextView
-                    android:text="@string/aciertos" />
+                <TextView android:text="@string/aciertos" />
 
                 <TextView
                     android:id="@+id/txtnumaciertos"
@@ -61,8 +59,7 @@
                 android:layout_marginBottom="5dp"
                 android:minHeight="40dp">
 
-                <TextView
-                    android:text="@string/aciertosseguidos" />
+                <TextView android:text="@string/aciertosseguidos" />
 
                 <TextView
                     android:id="@+id/txtnumconsecutivos"
@@ -75,8 +72,7 @@
                 android:layout_marginBottom="5dp"
                 android:minHeight="40dp">
 
-                <TextView
-                    android:text="@string/sumados" />
+                <TextView android:text="@string/sumados" />
 
                 <TextView
                     android:id="@+id/txtsuma"
@@ -89,8 +85,7 @@
                 android:layout_marginBottom="10dp"
                 android:minHeight="40dp">
 
-                <TextView
-                    android:text="@string/restados" />
+                <TextView android:text="@string/restados" />
 
                 <TextView
                     android:id="@+id/txtrestados"

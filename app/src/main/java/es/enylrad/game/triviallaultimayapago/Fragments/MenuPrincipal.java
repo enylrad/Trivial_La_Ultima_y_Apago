@@ -37,10 +37,8 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
     private Button podcast;
 
     //Botones con Imagenes
-    private ImageButton logrosA;
-    private ImageButton logrosD;
-    private ImageButton marcadA;
-    private ImageButton marcadD;
+    private ImageButton logros;
+    private ImageButton marcad;
     private ImageButton mostrar_menu_lateral;
 
     //Imagen inicio aplicacion
@@ -94,10 +92,8 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
         desafio = (Button) view.findViewById(R.id.desafio);
         mostrar_menu_lateral = (ImageButton) view.findViewById(R.id.mostrar_menu_lateral);
-        logrosA = (ImageButton) view.findViewById(R.id.logrosA);
-        logrosD = (ImageButton) view.findViewById(R.id.logrosD);
-        marcadA = (ImageButton) view.findViewById(R.id.marcadA);
-        marcadD = (ImageButton) view.findViewById(R.id.marcadD);
+        logros = (ImageButton) view.findViewById(R.id.logros);
+        marcad = (ImageButton) view.findViewById(R.id.marcad);
         podcast = (Button) view.findViewById(R.id.podcast);
 
         presentacion = (FrameLayout) view.findViewById(R.id.presentacion);
@@ -114,10 +110,8 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
         //Botones interfaz
         desafio.setOnClickListener(this);
-        logrosA.setOnClickListener(this);
-        logrosD.setOnClickListener(this);
-        marcadA.setOnClickListener(this);
-        marcadD.setOnClickListener(this);
+        logros.setOnClickListener(this);
+        marcad.setOnClickListener(this);
         podcast.setOnClickListener(this);
         mostrar_menu_lateral.setOnClickListener(this);
 
@@ -142,36 +136,30 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
                 break;
 
-            case R.id.logrosA:
+            case R.id.logros:
 
-                startActivityForResult(Games.Achievements.getAchievementsIntent(activity.getmGoogleApiClient()), Main.REQUEST_ACHIEVEMENTS);
-
-                break;
-            //Botón de Logros (Deshabilido)
-            case R.id.logrosD:
-
-                builder.setMessage(getString(R.string.idemensaglogro))
-                        .setTitle(R.string.identificate)
-                        .setPositiveButton(getString(R.string.ok), null);
-                builder.show();
-
+                if (activity.getmGoogleApiClient().isConnected()) {
+                    startActivityForResult(Games.Achievements.getAchievementsIntent(activity.getmGoogleApiClient()), Main.REQUEST_ACHIEVEMENTS);
+                } else {
+                    builder.setMessage(getString(R.string.idemensaglogro))
+                            .setTitle(R.string.identificate)
+                            .setPositiveButton(getString(R.string.ok), null);
+                    builder.show();
+                }
                 break;
 
-            //Boton de Marcadores (Habilitado)
-            case R.id.marcadA:
+            case R.id.marcad:
+                if (activity.getmGoogleApiClient().isConnected()) {
+                    startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(activity.getmGoogleApiClient()), Main.REQUEST_LEADERBOARD);
 
-                startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(activity.getmGoogleApiClient()), Main.REQUEST_LEADERBOARD);
-
+                } else {
+                    builder.setMessage(getString(R.string.idemensagmarca))
+                            .setTitle(R.string.identificate)
+                            .setPositiveButton(getString(R.string.ok), null);
+                    builder.show();
+                }
                 break;
-            //Boton de Marcadores (Deshabilido)
-            case R.id.marcadD:
 
-                builder.setMessage(getString(R.string.idemensagmarca))
-                        .setTitle(R.string.identificate)
-                        .setPositiveButton(getString(R.string.ok), null);
-                builder.show();
-
-                break;
 
             case R.id.podcast:
 
@@ -222,28 +210,24 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
         view.findViewById(R.id.sign_out_button).setVisibility(signin ? View.VISIBLE : View.GONE);
 
-        logrosA.setVisibility(signin ? View.VISIBLE : View.GONE);
-        marcadA.setVisibility(signin ? View.VISIBLE : View.GONE);
+        logros.setBackground(signin ? getResources().getDrawable(R.drawable.boton) : getResources().getDrawable(R.color.gris));
+        marcad.setBackground(signin ? getResources().getDrawable(R.drawable.boton) : getResources().getDrawable(R.color.gris));
 
         view.findViewById(R.id.sign_in_button).setVisibility(signin ? View.GONE : View.VISIBLE);
-
-        logrosD.setVisibility(signin ? View.GONE : View.VISIBLE);
-        marcadD.setVisibility(signin ? View.GONE : View.VISIBLE);
 
     }
 
 
     /**
      * Metodo para hacer o no pulsables los botones
+     *
      * @param pulsable
      */
     public void botonesPulsables(boolean pulsable) {
 
         desafio.setClickable(pulsable);
-        logrosA.setClickable(pulsable);
-        logrosD.setClickable(pulsable);
-        marcadA.setClickable(pulsable);
-        marcadD.setClickable(pulsable);
+        logros.setClickable(pulsable);
+        marcad.setClickable(pulsable);
         podcast.setClickable(pulsable);
         mostrar_menu_lateral.setClickable(pulsable);
 
