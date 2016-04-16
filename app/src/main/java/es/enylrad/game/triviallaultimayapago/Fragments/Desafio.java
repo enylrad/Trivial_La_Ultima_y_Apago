@@ -43,6 +43,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
     //////////////////////////////////////PROCESOS/////////////////////////////////////////////////
     private final int puntuacion_minima = 0;            //Puntuacion minima permitida
+
     ////////////////////////////////////////VARIABLES//////////////////////////////////////////////
     private final int tiempo_inicial_desafio = 60 * 10;       //Tiempo inicial de la partida
     private AsyncTask animacion_inicial;
@@ -52,10 +53,11 @@ public class Desafio extends Fragment implements View.OnClickListener {
     private Handler cargaTimmer_inicio_handler;
     //Hilo tiempo desafio
     private Thread tiempo_partida_thread;
-    //////////////////////////////////////FIN PROCESOS/////////////////////////////////////////////
     private Handler tiempo_partida_handler;
+
     //INTERFAZ
     private ProgressBar barra_progreso_tiempo;        //Variable para la progressbar de la interfaz
+
     //Textos
     private TextView txt_segundos_progreso;
     private TextView txt_puntuacion;
@@ -65,6 +67,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     private TextView txt_pregunta;
     private TextView txt_cuenta_atras;
     private TextView txt_modo;
+
     //////////////////////////////////////////TABLERO//////////////////////////////////////////////
     //Imagenes
     private ImageView amarillo;
@@ -76,6 +79,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     private ImageView rosa;
     private ImageView ic_tema;
     private ImageView fondo;
+
     //todo hacer una clase
     //////////////////////////////////////////RESPEUSTAS//////////////////////////////////////////
     //RelativeLayout
@@ -92,6 +96,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     private TextView txt_respuesta2;
     private TextView txt_respuesta3;
     private TextView txt_respuesta4;
+
     ////////////////////////////////////////ANIMACIONES////////////////////////////////////////////
     private AnimatorSet anim_preparacion_texto;
     private AnimatorSet anim_fin_texto;
@@ -100,6 +105,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     private Animation anim_desaparecerTema;
     private Animation anim_preparacion_fondo;
     private Animation anim_fin_fondo;
+
     ////////////////////////////////////////SONIDOS////////////////////////////////////////////////
     private MediaPlayer ding;
     private MediaPlayer gameover;
