@@ -19,6 +19,15 @@ public class PuntuacionDesafio extends Fragment implements View.OnClickListener 
 
     public final static String TAG_FRAGMENT = "PUNTUACIONES";
 
+    private TextView aciertos;
+    private TextView fallos;
+    private TextView tseguidas;
+    private TextView tsuma;
+    private TextView tresta;
+    private TextView total;
+
+    private View view;
+
     public PuntuacionDesafio() {
 
     }
@@ -35,17 +44,9 @@ public class PuntuacionDesafio extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View vista = inflater.inflate(R.layout.puntuacion_fragment, container, false);
+        this.view = inflater.inflate(R.layout.puntuacion_fragment, container, false);
 
-        //Botones interfaz
-        vista.findViewById(R.id.aceptar).setOnClickListener(this);
-
-        TextView aciertos = (TextView) vista.findViewById(R.id.txtnumaciertos);
-        TextView fallos = (TextView) vista.findViewById(R.id.txtnumfallos);
-        TextView tseguidas = (TextView) vista.findViewById(R.id.txtnumconsecutivos);
-        TextView tsuma = (TextView) vista.findViewById(R.id.txtsuma);
-        TextView tresta = (TextView) vista.findViewById(R.id.txtrestados);
-        TextView total = (TextView) vista.findViewById(R.id.txttotal);
+        configurarReferencias();
 
         MetodosEstaticos.iniciarAnimacionContar(0, getArguments().getInt("total_aciertos"), 1000, aciertos);
         MetodosEstaticos.iniciarAnimacionContar(0, getArguments().getInt("total_fallos"), 1000, fallos);
@@ -54,25 +55,38 @@ public class PuntuacionDesafio extends Fragment implements View.OnClickListener 
         MetodosEstaticos.iniciarAnimacionContar(0, getArguments().getInt("max_puntos_restados"), 1000, tresta);
         MetodosEstaticos.iniciarAnimacionContar(0, getArguments().getInt("total_puntuacion"), 1000, total);
 
-        return vista;
+        return view;
+    }
+
+    private void configurarReferencias() {
+
+        //Botones interfaz
+        aciertos = (TextView) view.findViewById(R.id.txtnumaciertos);
+        fallos = (TextView) view.findViewById(R.id.txtnumfallos);
+        tseguidas = (TextView) view.findViewById(R.id.txtnumconsecutivos);
+        tsuma = (TextView) view.findViewById(R.id.txtsuma);
+        tresta = (TextView) view.findViewById(R.id.txtrestados);
+        total = (TextView) view.findViewById(R.id.txttotal);
+
+        view.findViewById(R.id.aceptar).setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.aceptar) {
+        switch (v.getId()) {
 
-            Fragment fragment = getFragmentManager().findFragmentByTag(TAG_FRAGMENT);
-            if (fragment != null) {
+            case R.id.aceptar:
 
                 FragmentTransaction ft;
-
                 ft = getFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.slide_puntuaciones_back_in, R.anim.slide_puntuaciones_back_out);
-                ft.remove(fragment);
+                ft.remove(getFragmentManager().findFragmentByTag(TAG_FRAGMENT));
                 ft.commit();
 
-            }
+                break;
+
         }
     }
 

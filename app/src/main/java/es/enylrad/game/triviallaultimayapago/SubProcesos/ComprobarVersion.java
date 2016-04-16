@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -25,7 +24,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import es.enylrad.game.triviallaultimayapago.BDTrivial;
-import es.enylrad.game.triviallaultimayapago.Interfaces.Comunicacion;
+import es.enylrad.game.triviallaultimayapago.Fragments.MenuPrincipal;
 import es.enylrad.game.triviallaultimayapago.Main;
 import es.enylrad.game.triviallaultimayapago.Otros.StringMD;
 import es.enylrad.game.triviallaultimayapago.R;
@@ -37,17 +36,16 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
 
     private int version = -1;
     private BDTrivial db;
-    private AppCompatActivity context;
+    private Activity context;
     private String direccion;
     private boolean conexion;
+    private MenuPrincipal fragment;
 
-    private Comunicacion callback;
-
-    public ComprobarVersion(BDTrivial db, AppCompatActivity context) {
-        this.db = db;
-        this.context = context;
-        this.direccion = context.getResources().getString(R.string.comprobar_version_dir);
-        this.callback = (Comunicacion) context;
+    public ComprobarVersion(Activity activity, MenuPrincipal fragment) {
+        this.db = ((Main) activity).getBase_de_datos_trivial();
+        this.context = activity;
+        this.direccion = activity.getResources().getString(R.string.comprobar_version_dir);
+        this.fragment = fragment;
 
     }
 
@@ -96,6 +94,7 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
         super.onPreExecute();
 
+        //comrobamos si tenemos conexión a internet
         conexion = comprobarConexionesWifiMobile(context);
 
     }
@@ -103,6 +102,7 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... params) {
 
+        //Si tenemos conexión procedemos a comprobar la versión
         if (conexion) {
             comprobarVersion();
         }
@@ -117,11 +117,11 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
             //Si la versión del servidor es superior se realizará la bajada de preguntas
             if (db.getReadableDatabase().getVersion() < version) {
 
-                new BajarPreguntas(db, context, version).execute();
+                new BajarPreguntas(context, version, fragment).execute();
 
             } else {
 
-                callback.MenuPrincipalPulsable(true);
+                fragment.botonesPulsables(true);
                 ((Main) context).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
             }
@@ -129,6 +129,10 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
 
     }
 
+    /**
+     * En este metodo se comprueba si la versión actual de la base de datos es inferior a la que tenemos
+     * en el servidor
+     */
     private void comprobarVersion() {
 
         String data = mostrar();
@@ -159,6 +163,12 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
 
     }
 
+    /**
+     * Metodo que configura la conexión para comunicarnos con el servidor
+     * se llama en el al metodo convertStreamToString
+     *
+     * @return
+     */
     public String mostrar() {
 
         HttpURLConnection urlConnection = null;
@@ -198,6 +208,12 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
 
     }
 
+    /**
+     * Convierte los datos JSON a String
+     * @param is
+     * @return
+     * @throws IOException
+     */
     private String convertStreamToString(InputStream is) throws IOException {
 
         if (is != null) {

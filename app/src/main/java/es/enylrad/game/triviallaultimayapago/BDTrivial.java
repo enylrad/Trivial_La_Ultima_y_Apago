@@ -106,6 +106,11 @@ public class BDTrivial extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Preguntas que se cargaran inicialmente en el trivial, son una pequeña muestra
+     *
+     * @param db
+     */
     public void cargarPreguntas(SQLiteDatabase db) {
 
         db.execSQL("INSERT INTO pregunta " +
@@ -120,6 +125,11 @@ public class BDTrivial extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Metodo que inserta una franquicia ala base de datos
+     * @param id
+     * @param franquicia
+     */
     public void insertarFranquicia(int id, String franquicia) {
 
         String sql = "INSERT INTO franquicia VALUES (?, ?);";
@@ -137,7 +147,10 @@ public class BDTrivial extends SQLiteOpenHelper {
     }
 
 
-    // insert data using transaction and prepared statement
+    /**
+     * Inserta una pregunta a la base de datos
+     * @param p
+     */
     public void insertarPregunta(Pregunta p) {
 
         // you can use INSERT only
@@ -164,6 +177,14 @@ public class BDTrivial extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * Metodo que busca una pregunta en la base de datos
+     * Tambien se llama en ella al metodo marcarPregunta
+     * En caso de que esten todas marcadas las resetea
+     * @param result
+     * @param numcat
+     * @return
+     */
     public int buscarymostrarPregunta(ArrayList<String> result, int numcat) {
 
         boolean encontrado;
@@ -199,6 +220,7 @@ public class BDTrivial extends SQLiteOpenHelper {
 
             }
 
+            //Si no encuentra preguntas que no se hayan preguntado, resetea el marcador
             if (!encontrado) {
 
                 resetearPreguntasCategoria(numcat);
@@ -210,13 +232,18 @@ public class BDTrivial extends SQLiteOpenHelper {
 
         } while (!encontrado);
 
-        marcarComoPreguntada(id);
+        marcarPregunta(id);
 
         return respcorrect;
 
     }
 
-    public void marcarComoPreguntada(int id_preg) {
+    /**
+     * Este metodo marca a la pregunta para que no se vuelva a preguntar
+     *
+     * @param id_preg
+     */
+    public void marcarPregunta(int id_preg) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -228,6 +255,10 @@ public class BDTrivial extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * Este metodo resetea las preguntas marcadas con marcarPregunta
+     * @param numcat
+     */
     public void resetearPreguntasCategoria(int numcat) {
 
         SQLiteDatabase db = getWritableDatabase();
@@ -240,6 +271,12 @@ public class BDTrivial extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Este metodo recibe un String y comprueba si la franquicia existe, si existe devuelve el id
+     * de la franquicia.
+     * @param franquicia
+     * @return
+     */
     public int buscarFranquicia(String franquicia) {
 
         franquicia = franquicia.trim();

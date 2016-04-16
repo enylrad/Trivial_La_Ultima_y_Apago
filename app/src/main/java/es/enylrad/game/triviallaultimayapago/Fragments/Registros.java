@@ -22,8 +22,7 @@ public class Registros extends Fragment implements View.OnClickListener {
 
     public final static String TAG_FRAGMENT = "ESTADISTICAS";
 
-    private Main context;
-
+    //Textos
     private TextView respondidas;
     private TextView acertadas;
     private TextView rpg_aventuras;
@@ -37,67 +36,64 @@ public class Registros extends Fragment implements View.OnClickListener {
     //variables estadisticas
     private Estadisticas estadisticas;
 
-
-    public Registros() {
-
-        estadisticas = new Estadisticas();
-    }
-
-    public static Registros newInstance(Bundle arguments) {
-        Registros e = new Registros();
-        if (arguments != null) {
-            e.setArguments(arguments);
-        }
-        return e;
-    }
+    private Main activity;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        context = (Main) getActivity();
+        this.estadisticas = new Estadisticas();
+        this.activity = (Main) getActivity();
+        this.view = inflater.inflate(R.layout.estadisticas_fragment, container, false);
 
-        View vista = inflater.inflate(R.layout.estadisticas_fragment, container, false);
+        configurarRegistro();
 
-        respondidas = (TextView) vista.findViewById(R.id.respondidas);
-        acertadas = (TextView) vista.findViewById(R.id.acertadas);
-        rpg_aventuras = (TextView) vista.findViewById(R.id.rpg_aventras_graficas);
-        estrategia = (TextView) vista.findViewById(R.id.estrategia);
-        lucha = (TextView) vista.findViewById(R.id.lucha);
-        plataf_avent = (TextView) vista.findViewById(R.id.plataformas_aventuras);
-        shooter = (TextView) vista.findViewById(R.id.shooter);
-        deportes = (TextView) vista.findViewById(R.id.deportes);
-        otros = (TextView) vista.findViewById(R.id.otros);
+        activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-        context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        return view;
+    }
 
-        vista.findViewById(R.id.aceptar).setOnClickListener(this);
+    private void configurarRegistro() {
 
-        return vista;
+        respondidas = (TextView) view.findViewById(R.id.respondidas);
+        acertadas = (TextView) view.findViewById(R.id.acertadas);
+        rpg_aventuras = (TextView) view.findViewById(R.id.rpg_aventras_graficas);
+        estrategia = (TextView) view.findViewById(R.id.estrategia);
+        lucha = (TextView) view.findViewById(R.id.lucha);
+        plataf_avent = (TextView) view.findViewById(R.id.plataformas_aventuras);
+        shooter = (TextView) view.findViewById(R.id.shooter);
+        deportes = (TextView) view.findViewById(R.id.deportes);
+        otros = (TextView) view.findViewById(R.id.otros);
+
+        view.findViewById(R.id.aceptar).setOnClickListener(this);
+
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        estadisticas.setRespondidas(context.getSharedpreferences().getInt("respondidas", Context.MODE_PRIVATE));
-        estadisticas.setAcertadas(context.getSharedpreferences().getInt("acertadas", Context.MODE_PRIVATE));
+        //todo serializar todo esto
 
-        estadisticas.setRpg_aventuras(context.getSharedpreferences().getInt("rpg_aventuras", Context.MODE_PRIVATE));
-        estadisticas.setEstrategia(context.getSharedpreferences().getInt("estrategia", Context.MODE_PRIVATE));
-        estadisticas.setLucha(context.getSharedpreferences().getInt("lucha", Context.MODE_PRIVATE));
-        estadisticas.setPlataf_avent(context.getSharedpreferences().getInt("platf_avent", Context.MODE_PRIVATE));
-        estadisticas.setShooter(context.getSharedpreferences().getInt("shooter", Context.MODE_PRIVATE));
-        estadisticas.setDeportes(context.getSharedpreferences().getInt("deportes", Context.MODE_PRIVATE));
-        estadisticas.setOtros(context.getSharedpreferences().getInt("otros", Context.MODE_PRIVATE));
+        estadisticas.setRespondidas(activity.getSharedpreferences().getInt("respondidas", Context.MODE_PRIVATE));
+        estadisticas.setAcertadas(activity.getSharedpreferences().getInt("acertadas", Context.MODE_PRIVATE));
 
-        estadisticas.setRpg_aventuras_acertada(context.getSharedpreferences().getInt("rpg_aventuras_acertada", Context.MODE_PRIVATE));
-        estadisticas.setEstrategia_acertada(context.getSharedpreferences().getInt("estrategia_acertada", Context.MODE_PRIVATE));
-        estadisticas.setLucha_acertada(context.getSharedpreferences().getInt("lucha_acertada", Context.MODE_PRIVATE));
-        estadisticas.setPlataf_avent_acertada(context.getSharedpreferences().getInt("platf_avent_acertada", Context.MODE_PRIVATE));
-        estadisticas.setShooter_acertada(context.getSharedpreferences().getInt("shooter_acertada", Context.MODE_PRIVATE));
-        estadisticas.setDeportes_acertada(context.getSharedpreferences().getInt("deportes_acertada", Context.MODE_PRIVATE));
-        estadisticas.setOtros_acertada(context.getSharedpreferences().getInt("otros_acertada", Context.MODE_PRIVATE));
+        estadisticas.setRpg_aventuras(activity.getSharedpreferences().getInt("rpg_aventuras", Context.MODE_PRIVATE));
+        estadisticas.setEstrategia(activity.getSharedpreferences().getInt("estrategia", Context.MODE_PRIVATE));
+        estadisticas.setLucha(activity.getSharedpreferences().getInt("lucha", Context.MODE_PRIVATE));
+        estadisticas.setPlataf_avent(activity.getSharedpreferences().getInt("platf_avent", Context.MODE_PRIVATE));
+        estadisticas.setShooter(activity.getSharedpreferences().getInt("shooter", Context.MODE_PRIVATE));
+        estadisticas.setDeportes(activity.getSharedpreferences().getInt("deportes", Context.MODE_PRIVATE));
+        estadisticas.setOtros(activity.getSharedpreferences().getInt("otros", Context.MODE_PRIVATE));
+
+        estadisticas.setRpg_aventuras_acertada(activity.getSharedpreferences().getInt("rpg_aventuras_acertada", Context.MODE_PRIVATE));
+        estadisticas.setEstrategia_acertada(activity.getSharedpreferences().getInt("estrategia_acertada", Context.MODE_PRIVATE));
+        estadisticas.setLucha_acertada(activity.getSharedpreferences().getInt("lucha_acertada", Context.MODE_PRIVATE));
+        estadisticas.setPlataf_avent_acertada(activity.getSharedpreferences().getInt("platf_avent_acertada", Context.MODE_PRIVATE));
+        estadisticas.setShooter_acertada(activity.getSharedpreferences().getInt("shooter_acertada", Context.MODE_PRIVATE));
+        estadisticas.setDeportes_acertada(activity.getSharedpreferences().getInt("deportes_acertada", Context.MODE_PRIVATE));
+        estadisticas.setOtros_acertada(activity.getSharedpreferences().getInt("otros_acertada", Context.MODE_PRIVATE));
 
         MetodosEstaticos.iniciarAnimacionContar(0, estadisticas.getRespondidas(), 1000, respondidas);
 
@@ -169,7 +165,7 @@ public class Registros extends Fragment implements View.OnClickListener {
             case R.id.aceptar:
 
                 getFragmentManager().popBackStack();
-                context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
                 break;
 

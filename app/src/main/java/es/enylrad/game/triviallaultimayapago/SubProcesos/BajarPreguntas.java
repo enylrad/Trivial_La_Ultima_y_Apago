@@ -1,10 +1,10 @@
 package es.enylrad.game.triviallaultimayapago.SubProcesos;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -26,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import es.enylrad.game.triviallaultimayapago.BDTrivial;
+import es.enylrad.game.triviallaultimayapago.Fragments.MenuPrincipal;
 import es.enylrad.game.triviallaultimayapago.Interfaces.Comunicacion;
 import es.enylrad.game.triviallaultimayapago.Main;
 import es.enylrad.game.triviallaultimayapago.Objetos.Pregunta;
@@ -39,20 +40,22 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
 
     private int version = -1;
     private BDTrivial db;
-    private AppCompatActivity context;
+    private Activity activity;
     private String direccion;
-    private Comunicacion callback;
+    private Comunicacion callback_main;
+    private MenuPrincipal fragment;
 
     private RelativeLayout avisoActualizacion;
     private ProgressView mProgressDialog;
 
-    public BajarPreguntas(BDTrivial db, AppCompatActivity context, int version) {
+    public BajarPreguntas(Activity activity, int version, MenuPrincipal fragment) {
 
-        this.db = db;
-        this.context = context;
+        this.activity = activity;
         this.version = version;
-        this.callback = (Comunicacion) context;
-        this.direccion = context.getResources().getString(R.string.bajar_preguntas_bd);
+        this.fragment = fragment;
+        this.callback_main = (Main) activity;
+        this.db = ((Main) activity).getBase_de_datos_trivial();
+        this.direccion = activity.getResources().getString(R.string.bajar_preguntas_bd);
 
     }
 
@@ -60,15 +63,18 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
     protected void onPreExecute() {
         super.onPreExecute();
 
-        avisoActualizacion = callback.avisoActualizacion();
-        mProgressDialog = callback.progressBar();
+        //Se inicia el aviso de que esta actualizando
+        avisoActualizacion = callback_main.avisoActualizacion();
+        mProgressDialog = callback_main.progressBar();
         avisoActualizacion.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     protected Void doInBackground(Void... params) {
+
         descargarDatos();
+
         return null;
     }
 
@@ -86,10 +92,11 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
     protected void onPostExecute(Void s) {
         super.onPostExecute(s);
 
+        //Configuraciones para que vuelva ha funcionar con normalidad
         mProgressDialog.setVisibility(View.GONE);
         avisoActualizacion.setVisibility(View.GONE);
-        callback.MenuPrincipalPulsable(true);
-        ((Main) context).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        fragment.botonesPulsables(true);
+        ((Main) activity).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
     /**
@@ -142,6 +149,7 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
                 JSONArray jsonArray = json.optJSONArray("franquicia");
 
                 Pregunta pregunta;
+
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     JSONObject jsonArrayChild = jsonArray.getJSONObject(i);
@@ -181,12 +189,12 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
                 e.printStackTrace();
             }
 
-            SharedPreferences ver = context.getSharedPreferences("version", Context.MODE_PRIVATE);
+            SharedPreferences ver = activity.getSharedPreferences("version", Context.MODE_PRIVATE);
             SharedPreferences.Editor editver = ver.edit();
             editver.putInt("version", version);
             editver.apply();
 
-            Main.version = version;
+            Main.VERSION_BD = version;
 
             db.close();
 
@@ -194,6 +202,12 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
 
     }
 
+    /**
+     * Metodo que configura la conexión para comunicarnos con el servidor
+     * se llama en el al metodo convertStreamToString
+     *
+     * @return
+     */
     public String mostrar() {
 
         HttpURLConnection urlConnection = null;
@@ -203,7 +217,7 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
 
             URL url = new URL(direccion);
 
-            String clave = "id_acceso=" + StringMD.getStringMessageDigest(context.getResources().getString(R.string.acces_BD), StringMD.SHA1);
+            String clave = "id_acceso=" + StringMD.getStringMessageDigest(activity.getResources().getString(R.string.acces_BD), StringMD.SHA1);
             urlConnection = (HttpURLConnection) url.openConnection();
 
             urlConnection.setDoOutput(true);
@@ -231,6 +245,12 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
 
     }
 
+    /**
+     * Convierte los datos JSON a String
+     * @param is
+     * @return
+     * @throws IOException
+     */
     private String convertStreamToString(InputStream is) throws IOException {
 
         if (is != null) {

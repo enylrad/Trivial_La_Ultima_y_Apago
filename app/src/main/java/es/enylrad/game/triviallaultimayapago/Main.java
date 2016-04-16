@@ -51,24 +51,24 @@ import es.enylrad.game.triviallaultimayapago.Interfaces.Comunicacion;
 public class Main extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, Comunicacion {
 
-
     //IDS APPI GOOGLE PLAY GAMES
     //LOGROS
     public final static int REQUEST_ACHIEVEMENTS = 10001;
     //PUNTUACIONES
     public final static int REQUEST_LEADERBOARD = 10002;
     public final static int RC_SIGN_IN = 9001;
+    //PERMISOS
+    public final static int REQUEST_CODE_ASK_PERMISSIONS = 123;
     //VERSION BASE DE DATOS
     /*Version de la base de datos inicial de la APP que se creo inicialmente, se ira modificando
     con actualizaciones. Este valor no se debe tocar*/
     public final static int BBDD_VERSION = 9;
-    // Logcat tag
     private static final String TAG = "MainActivity";
+    //PROFILE INFORMATION
     // Profile pic image size in pixels
     private static final int PROFILE_PIC_SIZE = 400;
-    public static int version;
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
-    protected FragmentTransaction ft;
+    public static int VERSION_BD;
+    private FragmentTransaction ft;
     private MenuPrincipal menu_principal_fragment;
 
     ///GOOGLE PLAY API
@@ -82,7 +82,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
     //MENU LATERAL
     private DrawerLayout mDrawerLayout;
-
     private RelativeLayout btn_estadisticas;
     private RelativeLayout btn_enviar_preg;
     private RelativeLayout btn_about;
@@ -116,17 +115,14 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
 
         //Miramos si existe una versión guardada de la base de datos
-        version = getSharedPreferences("version", MODE_PRIVATE).getInt("version", BBDD_VERSION);
+        VERSION_BD = getSharedPreferences("version", MODE_PRIVATE).getInt("version", BBDD_VERSION);
 
         //Carga de la base de datos
-        base_de_datos_trivial = new BDTrivial(this, version);
+        base_de_datos_trivial = new BDTrivial(this, VERSION_BD);
 
+        //Menu lateral
         configurarDrawerMenu();
 
-    }
-
-    public DrawerLayout getDrawerLayout() {
-        return mDrawerLayout;
     }
 
     public BDTrivial getBase_de_datos_trivial() {
@@ -137,16 +133,30 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         return getSharedPreferences("ESTADISTICAS", 0);
     }
 
-    public GoogleApiClient getmGoogleApiClient() {
-        return mGoogleApiClient;
-    }
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent intent) {
 
-    public void openDrawer() {
-        mDrawerLayout.openDrawer(GravityCompat.START);
-    }
+        switch (requestCode) {
 
-    public void closeDrawers() {
-        mDrawerLayout.closeDrawers();
+            case RC_SIGN_IN:
+
+                mSignInClicked = false;
+                mResolvingConnectionFailure = false;
+                if (resultCode == RESULT_OK) {
+                    mGoogleApiClient.connect();
+                } else {
+                    // Bring up an error dialog to alert the user that sign-in
+                    // failed. The R.string.signin_failure should reference an error
+                    // string in your strings.xml file that tells the user they
+                    // could not be signed in, such as "Unable to sign in."
+                    BaseGameUtils.showActivityResultError(this,
+                            requestCode, resultCode, R.string.signin_failure);
+                }
+
+                ///GAME API
+
+                break;
+        }
     }
 
     @Override
@@ -167,8 +177,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
                 Desafio d = (Desafio) getSupportFragmentManager().findFragmentByTag(Desafio.TAG_FRAGMENT);
 
-                if (d.getAnim_ini() != null && d.getAnim_ini().getStatus() == AsyncTask.Status.RUNNING
-                        || d.getAnim_fin() != null && d.getAnim_fin().getStatus() == AsyncTask.Status.RUNNING) {
+                if (d.getAnimacion_inicial() != null && d.getAnimacion_inicial().getStatus() == AsyncTask.Status.RUNNING
+                        || d.getAnimacion_final() != null && d.getAnimacion_final().getStatus() == AsyncTask.Status.RUNNING) {
 
                     return true;
 
@@ -188,8 +198,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
                                 Desafio d = (Desafio) getSupportFragmentManager().findFragmentByTag(Desafio.TAG_FRAGMENT);
 
-                                if (d.getAnim_ini() != null && d.getAnim_ini().getStatus() == AsyncTask.Status.RUNNING
-                                        || d.getAnim_fin() != null && d.getAnim_fin().getStatus() == AsyncTask.Status.RUNNING) {
+                                if (d.getAnimacion_inicial() != null && d.getAnimacion_inicial().getStatus() == AsyncTask.Status.RUNNING
+                                        || d.getAnimacion_final() != null && d.getAnimacion_final().getStatus() == AsyncTask.Status.RUNNING) {
 
 
                                 } else {
@@ -221,6 +231,42 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mGoogleApiClient.connect();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+
+    }
+
+    public void necesitasActualizar() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.necesita_actualizar))
+                .setTitle(getString(R.string.titulo_necesita_actualizar))
+                .setPositiveButton(getString(R.string.ok), null);
+        AppCompatDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    ////////////////////////////////////////CONEXION GOOGLE PLAY GAMES/////////////////////////////
+
+
+    public GoogleApiClient getmGoogleApiClient() {
+        return mGoogleApiClient;
     }
 
     @Override
@@ -320,62 +366,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                 .build();
     }
 
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent intent) {
 
-        switch (requestCode) {
-
-            case RC_SIGN_IN:
-
-                mSignInClicked = false;
-                mResolvingConnectionFailure = false;
-                if (resultCode == RESULT_OK) {
-                    mGoogleApiClient.connect();
-                } else {
-                    // Bring up an error dialog to alert the user that sign-in
-                    // failed. The R.string.signin_failure should reference an error
-                    // string in your strings.xml file that tells the user they
-                    // could not be signed in, such as "Unable to sign in."
-                    BaseGameUtils.showActivityResultError(this,
-                            requestCode, resultCode, R.string.signin_failure);
-                }
-
-                ///GAME API
-
-                break;
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        mGoogleApiClient.connect();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
-
-    }
-
-    public void necesitasActualizar() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.necesita_actualizar))
-                .setTitle(getString(R.string.titulo_necesita_actualizar))
-                .setPositiveButton(getString(R.string.ok), null);
-        AppCompatDialog dialog = builder.create();
-        dialog.show();
-
-    }
-
-    //////////////////////////////////////////////MENU LATERAL//////////////////////////////////////
+    ///////////////////////////////////////////////MENU LATERAL//////////////////////////////////////
 
     /**
      * Configuración Menu lateral
@@ -436,6 +428,18 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
     }
 
+    public void openDrawer() {
+        mDrawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void closeDrawers() {
+        mDrawerLayout.closeDrawers();
+    }
+
+    public DrawerLayout getDrawerLayout() {
+        return mDrawerLayout;
+    }
+
     ////////////////////////////////////////PROFILE INFORMATION///////////////////////////////////
 
     /**
@@ -473,11 +477,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void MenuPrincipalPulsable(boolean click) {
-        menu_principal_fragment.botonesPulsables(click);
     }
 
     ////////////////////////////////////////INTERFACE//////////////////////////////////////////////

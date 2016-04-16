@@ -30,54 +30,87 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
     public final static String TAG_FRAGMENT = "MENU_PRINCIPAL";
 
-    protected FragmentTransaction ft;
-    private View vista;
-    private Main context;
+    private FragmentTransaction ft;
 
+    //Botones
     private Button desafio;
     private Button podcast;
 
+    //Botones con Imagenes
     private ImageButton logrosA;
     private ImageButton logrosD;
     private ImageButton marcadA;
     private ImageButton marcadD;
     private ImageButton mostrar_menu_lateral;
 
+    //Imagen inicio aplicacion
     private FrameLayout presentacion;
-    private ImageView fondo_presentacion;
-    private ImageView logo_presentacion;
-    private ImageView flecha_envia;
 
+    //Mensaje enviar
+    private ImageView flecha_envia;
     private TextView texto_flecha_envia;
 
+    //Animaciones
     private Animation anim_presentacion;
     private Animation anim_envia_preg;
 
     private AlertDialog.Builder builder;
 
-    private boolean primer_inicio = true;
+    //variables
+    private boolean primer_inicio = true;       //variable para controlar que que la app arranca de 0
 
-    public MenuPrincipal() {
-    }
+    private View view;
+    private Main activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        context = (Main) getActivity();
-
-        this.vista = inflater.inflate(R.layout.menu_fragment, container, false);
+        this.activity = (Main) getActivity();
+        this.view = inflater.inflate(R.layout.menu_fragment, container, false);
 
         configurarReferencias();
 
-        context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
-        return vista;
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        configListener();
+
+        builder = new AlertDialog.Builder(activity);
+
+        configurarAnimaciones();
+
+        if (primer_inicio) presentacion.startAnimation(anim_presentacion);
+
+    }
+
+    private void configurarReferencias() {
+
+        desafio = (Button) view.findViewById(R.id.desafio);
+        mostrar_menu_lateral = (ImageButton) view.findViewById(R.id.mostrar_menu_lateral);
+        logrosA = (ImageButton) view.findViewById(R.id.logrosA);
+        logrosD = (ImageButton) view.findViewById(R.id.logrosD);
+        marcadA = (ImageButton) view.findViewById(R.id.marcadA);
+        marcadD = (ImageButton) view.findViewById(R.id.marcadD);
+        podcast = (Button) view.findViewById(R.id.podcast);
+
+        presentacion = (FrameLayout) view.findViewById(R.id.presentacion);
+        flecha_envia = (ImageView) view.findViewById(R.id.flecha_envia_preg);
+
+        texto_flecha_envia = (TextView) view.findViewById(R.id.texto_flecha_envia);
+
+        anim_presentacion = AnimationUtils.loadAnimation(activity, R.anim.anim_presentacion);
+        anim_envia_preg = AnimationUtils.loadAnimation(activity, R.anim.anim_flecha_envia);
+
+    }
+
+    private void configListener() {
 
         //Botones interfaz
         desafio.setOnClickListener(this);
@@ -89,20 +122,8 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
         mostrar_menu_lateral.setOnClickListener(this);
 
         //Botones para el login de google+
-        vista.findViewById(R.id.sign_in_button).setOnClickListener(this);
-        vista.findViewById(R.id.sign_out_button).setOnClickListener(this);
-
-        builder = new AlertDialog.Builder(context);
-
-        configurarAnimaciones();
-
-        //context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-
-        if (primer_inicio) {
-
-            presentacion.startAnimation(anim_presentacion);
-
-        }
+        view.findViewById(R.id.sign_in_button).setOnClickListener(this);
+        view.findViewById(R.id.sign_out_button).setOnClickListener(this);
     }
 
     @Override
@@ -123,7 +144,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
             case R.id.logrosA:
 
-                startActivityForResult(Games.Achievements.getAchievementsIntent(context.getmGoogleApiClient()), Main.REQUEST_ACHIEVEMENTS);
+                startActivityForResult(Games.Achievements.getAchievementsIntent(activity.getmGoogleApiClient()), Main.REQUEST_ACHIEVEMENTS);
 
                 break;
             //Botón de Logros (Deshabilido)
@@ -139,7 +160,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
             //Boton de Marcadores (Habilitado)
             case R.id.marcadA:
 
-                startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(context.getmGoogleApiClient()), Main.REQUEST_LEADERBOARD);
+                startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(activity.getmGoogleApiClient()), Main.REQUEST_LEADERBOARD);
 
                 break;
             //Boton de Marcadores (Deshabilido)
@@ -161,7 +182,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
                 } catch (ActivityNotFoundException e) {
 
-                    Toast.makeText(context, "Ninguna aplicación puede atender esta petición,"
+                    Toast.makeText(activity, "Ninguna aplicación puede atender esta petición,"
                             + " Porfavor instala un navegador web.", Toast.LENGTH_LONG).show();
 
                     e.printStackTrace();
@@ -172,13 +193,13 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
             //Boton de inicio de sesión
             case R.id.sign_in_button:
-                context.signInClicked();
+                activity.signInClicked();
 
                 break;
 
             //Boton de cierre de sesión
             case R.id.sign_out_button:
-                context.signOutclicked();
+                activity.signOutclicked();
 
                 // show sign-in button, hide the sign-out button
                 gestionBotones(false);
@@ -186,48 +207,36 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
             case R.id.mostrar_menu_lateral:
 
-                context.openDrawer();
+                activity.openDrawer();
 
                 break;
         }
     }
 
-    public void gestionBotones(Boolean signin) {
+    /**
+     * Este metodo gestiona los botones para la interfaz, si esta logeado o no
+     *
+     * @param signin
+     */
+    public void gestionBotones(boolean signin) {
 
-
-        vista.findViewById(R.id.sign_out_button).setVisibility(signin ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.sign_out_button).setVisibility(signin ? View.VISIBLE : View.GONE);
 
         logrosA.setVisibility(signin ? View.VISIBLE : View.GONE);
         marcadA.setVisibility(signin ? View.VISIBLE : View.GONE);
 
-        vista.findViewById(R.id.sign_in_button).setVisibility(signin ? View.GONE : View.VISIBLE);
+        view.findViewById(R.id.sign_in_button).setVisibility(signin ? View.GONE : View.VISIBLE);
 
         logrosD.setVisibility(signin ? View.GONE : View.VISIBLE);
         marcadD.setVisibility(signin ? View.GONE : View.VISIBLE);
 
     }
 
-    public void configurarReferencias() {
 
-        desafio = (Button) vista.findViewById(R.id.desafio);
-        mostrar_menu_lateral = (ImageButton) vista.findViewById(R.id.mostrar_menu_lateral);
-        logrosA = (ImageButton) vista.findViewById(R.id.logrosA);
-        logrosD = (ImageButton) vista.findViewById(R.id.logrosD);
-        marcadA = (ImageButton) vista.findViewById(R.id.marcadA);
-        marcadD = (ImageButton) vista.findViewById(R.id.marcadD);
-        podcast = (Button) vista.findViewById(R.id.podcast);
-
-        presentacion = (FrameLayout) vista.findViewById(R.id.presentacion);
-        logo_presentacion = (ImageView) vista.findViewById(R.id.logo_presentacion);
-        flecha_envia = (ImageView) vista.findViewById(R.id.flecha_envia_preg);
-
-        texto_flecha_envia = (TextView) vista.findViewById(R.id.texto_flecha_envia);
-
-        anim_presentacion = AnimationUtils.loadAnimation(context, R.anim.anim_presentacion);
-        anim_envia_preg = AnimationUtils.loadAnimation(context, R.anim.anim_flecha_envia);
-
-    }
-
+    /**
+     * Metodo para hacer o no pulsables los botones
+     * @param pulsable
+     */
     public void botonesPulsables(boolean pulsable) {
 
         desafio.setClickable(pulsable);
@@ -238,12 +247,16 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
         podcast.setClickable(pulsable);
         mostrar_menu_lateral.setClickable(pulsable);
 
-        vista.findViewById(R.id.sign_in_button).setClickable(pulsable);
-        vista.findViewById(R.id.sign_out_button).setClickable(pulsable);
+        view.findViewById(R.id.sign_in_button).setClickable(pulsable);
+        view.findViewById(R.id.sign_out_button).setClickable(pulsable);
     }
 
+    /**
+     * Configuración de las animaciones de la aplicación
+     */
     public void configurarAnimaciones() {
 
+        //Animacion de inicio de la aplicación
         anim_presentacion.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -252,7 +265,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
                 botonesPulsables(false);
 
-                context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
             }
 
@@ -266,7 +279,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
                 texto_flecha_envia.startAnimation(anim_envia_preg);
                 flecha_envia.startAnimation(anim_envia_preg);
 
-                new ComprobarVersion(context.getBase_de_datos_trivial(), context).execute();
+                new ComprobarVersion(activity, MenuPrincipal.this).execute();
 
             }
 
@@ -276,6 +289,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
             }
         });
 
+        //Animacion de la flecha enviar pregunta
         anim_envia_preg.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -295,11 +309,12 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
             }
         });
 
-        if (context.getmGoogleApiClient().isConnected()) {
+        if (activity.getmGoogleApiClient().isConnected()) {
             gestionBotones(true);
         } else {
             gestionBotones(false);
         }
 
     }
+
 }

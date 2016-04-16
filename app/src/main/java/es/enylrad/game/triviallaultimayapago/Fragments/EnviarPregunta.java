@@ -64,58 +64,70 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
     private int id_cat = 1;
     private int id_dif = 1;
 
-    private View vista;
-    private Main context;
+    private View view;
+    private Main activity;
     private BDTrivial BDTrivial;
-
-    public EnviarPregunta() {
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         try {
-            context = (Main) getActivity();
+            activity = (Main) getActivity();
         } catch (ClassCastException e) {
             e.printStackTrace();
         }
 
-        vista = inflater.inflate(R.layout.enviarpregunta_fragment, container, false);
+        this.view = inflater.inflate(R.layout.enviarpregunta_fragment, container, false);
 
-        pregM = (TextView) vista.findViewById(R.id.pregM);
-        btn1 = (Button) vista.findViewById(R.id.boton_resp_1);
-        btn2 = (Button) vista.findViewById(R.id.boton_resp_2);
-        btn3 = (Button) vista.findViewById(R.id.boton_resp_3);
-        btn4 = (Button) vista.findViewById(R.id.boton_resp_4);
+        configurarReferencias();
 
-        categ = (Spinner) vista.findViewById(R.id.spinCat);
-        dific = (Spinner) vista.findViewById(R.id.spinDif);
+        BDTrivial = activity.getBase_de_datos_trivial();
 
-        preg = (EditText) vista.findViewById(R.id.editpreg);
-        resp1 = (EditText) vista.findViewById(R.id.editresp1);
-        resp2 = (EditText) vista.findViewById(R.id.editresp2);
-        resp3 = (EditText) vista.findViewById(R.id.editresp3);
-        resp4 = (EditText) vista.findViewById(R.id.editresp4);
-        juego = (EditText) vista.findViewById(R.id.editjuego);
+        activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-        spinner_categoria = ArrayAdapter.createFromResource(context, R.array.categorias, android.R.layout.simple_spinner_item);
-        spinner_dificultad = ArrayAdapter.createFromResource(context, R.array.dificultad, android.R.layout.simple_spinner_item);
+        spinner_categoria = ArrayAdapter.createFromResource(activity, R.array.categorias, android.R.layout.simple_spinner_item);
+        spinner_dificultad = ArrayAdapter.createFromResource(activity, R.array.dificultad, android.R.layout.simple_spinner_item);
 
-        return vista;
+        return view;
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    private void configurarReferencias() {
+
+        pregM = (TextView) view.findViewById(R.id.pregM);
+        btn1 = (Button) view.findViewById(R.id.boton_resp_1);
+        btn2 = (Button) view.findViewById(R.id.boton_resp_2);
+        btn3 = (Button) view.findViewById(R.id.boton_resp_3);
+        btn4 = (Button) view.findViewById(R.id.boton_resp_4);
+
+        categ = (Spinner) view.findViewById(R.id.spinCat);
+        dific = (Spinner) view.findViewById(R.id.spinDif);
+
+        preg = (EditText) view.findViewById(R.id.editpreg);
+        resp1 = (EditText) view.findViewById(R.id.editresp1);
+        resp2 = (EditText) view.findViewById(R.id.editresp2);
+        resp3 = (EditText) view.findViewById(R.id.editresp3);
+        resp4 = (EditText) view.findViewById(R.id.editresp4);
+        juego = (EditText) view.findViewById(R.id.editjuego);
+
+    }
+
+    private void listenerConfig() {
 
         //Botones interfaz
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
         btn4.setOnClickListener(this);
-        vista.findViewById(R.id.enviar_preg).setOnClickListener(this);
+        view.findViewById(R.id.enviar_preg).setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        listenerConfig();
 
         preg.addTextChangedListener(new MultipleTextWatcher(preg));
         resp1.addTextChangedListener(new MultipleTextWatcher(resp1));
@@ -153,9 +165,6 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
             }
         });
 
-        BDTrivial = context.getBase_de_datos_trivial();
-
-        context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     @Override
@@ -216,20 +225,20 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
         if (preg.getText().toString().equals("") || resp1.getText().toString().equals("") || resp2.getText().toString().equals("")
                 || resp3.getText().toString().equals("") || resp4.getText().toString().equals("") || juego.getText().toString().equals("")) {
 
-            aviso = new AlertDialog.Builder(context).create();
+            aviso = new AlertDialog.Builder(activity).create();
             aviso.setMessage(getResources().getString(R.string.faltan_resp));
             aviso.show();
 
             //Comprobamos que el usuario a seleccionado alguna respuesta como correcta.
         } else if (respC == -1) {
 
-            aviso = new AlertDialog.Builder(context).create();
+            aviso = new AlertDialog.Builder(activity).create();
             aviso.setMessage(getResources().getString(R.string.falta_correcta));
             aviso.show();
 
         } else {
 
-            new Consulta_EnviarPregunta(context).execute();
+            new Consulta_EnviarPregunta(activity).execute();
 
         }
 
