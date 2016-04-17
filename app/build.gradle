@@ -7,8 +7,8 @@ android {
         applicationId 'es.enylrad.game.triviallaultimayapago'
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 69
-        versionName '2.0.1'
+        versionCode 70
+        versionName '2.0.1a'
     }
     buildTypes {
         release {
