@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -41,10 +42,11 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
 
     //UI
     private TextView pregM;
-    private Button btn1;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
+    private TextView btn1;
+    private TextView btn2;
+    private TextView btn3;
+    private TextView btn4;
+    private Button gestion;
 
     private EditText preg;
     private EditText resp1;
@@ -58,6 +60,8 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
 
     private ArrayAdapter spinner_categoria;
     private ArrayAdapter spinner_dificultad;
+
+    private ViewFlipper contenidos;
 
     //Variables
     private int respC = -1;
@@ -95,10 +99,11 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
     private void configurarReferencias() {
 
         pregM = (TextView) view.findViewById(R.id.pregM);
-        btn1 = (Button) view.findViewById(R.id.boton_resp_1);
-        btn2 = (Button) view.findViewById(R.id.boton_resp_2);
-        btn3 = (Button) view.findViewById(R.id.boton_resp_3);
-        btn4 = (Button) view.findViewById(R.id.boton_resp_4);
+        btn1 = (TextView) view.findViewById(R.id.boton_resp_1);
+        btn2 = (TextView) view.findViewById(R.id.boton_resp_2);
+        btn3 = (TextView) view.findViewById(R.id.boton_resp_3);
+        btn4 = (TextView) view.findViewById(R.id.boton_resp_4);
+        gestion = (Button) view.findViewById(R.id.gestion);
 
         categ = (Spinner) view.findViewById(R.id.spinCat);
         dific = (Spinner) view.findViewById(R.id.spinDif);
@@ -110,6 +115,8 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
         resp4 = (EditText) view.findViewById(R.id.editresp4);
         juego = (EditText) view.findViewById(R.id.editjuego);
 
+        contenidos = (ViewFlipper) view.findViewById(R.id.contenido);
+
     }
 
     private void listenerConfig() {
@@ -119,7 +126,7 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
         btn4.setOnClickListener(this);
-        view.findViewById(R.id.enviar_preg).setOnClickListener(this);
+        gestion.setOnClickListener(this);
 
     }
 
@@ -134,6 +141,8 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
         resp2.addTextChangedListener(new MultipleTextWatcher(resp2));
         resp3.addTextChangedListener(new MultipleTextWatcher(resp3));
         resp4.addTextChangedListener(new MultipleTextWatcher(resp4));
+
+        contenidos.setDisplayedChild(0);
 
         spinner_categoria.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categ.setAdapter(spinner_categoria);
@@ -174,50 +183,54 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
 
             case R.id.boton_resp_1:
 
-                btn1.setBackgroundColor(getResources().getColor(R.color.verde));
-                btn2.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                btn3.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                btn4.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
+                btn1.setBackground(getResources().getDrawable(R.drawable.boton_verde));
+                btn2.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn3.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn4.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
                 respC = 0;
                 break;
 
             case R.id.boton_resp_2:
 
-                btn2.setBackgroundColor(getResources().getColor(R.color.verde));
-                btn1.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                btn3.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                btn4.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
+                btn2.setBackground(getResources().getDrawable(R.drawable.boton_verde));
+                btn1.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn3.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn4.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
                 respC = 1;
                 break;
 
             case R.id.boton_resp_3:
 
-                btn3.setBackgroundColor(getResources().getColor(R.color.verde));
-                btn1.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                btn2.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                btn4.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
+                btn3.setBackground(getResources().getDrawable(R.drawable.boton_verde));
+                btn1.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn2.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn4.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
                 respC = 2;
                 break;
 
             case R.id.boton_resp_4:
 
-                btn4.setBackgroundColor(getResources().getColor(R.color.verde));
-                btn1.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                btn2.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                btn3.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
+                btn4.setBackground(getResources().getDrawable(R.drawable.boton_verde));
+                btn1.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn2.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn3.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
                 respC = 3;
                 break;
 
-            case R.id.enviar_preg:
+            case R.id.gestion:
 
-                enviarPregunta();
+                if (contenidos.getDisplayedChild() == 0) {
+                    verificarFormulario();
+                } else {
+                    enviarPregunta();
+                }
                 break;
 
 
         }
     }
 
-    public void enviarPregunta() {
+    public void verificarFormulario() {
 
         AlertDialog aviso;
 
@@ -230,7 +243,20 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
             aviso.show();
 
             //Comprobamos que el usuario a seleccionado alguna respuesta como correcta.
-        } else if (respC == -1) {
+        } else {
+
+            contenidos.setDisplayedChild(1);
+            gestion.setText("Enviar");
+
+        }
+
+    }
+
+    public void enviarPregunta() {
+
+        AlertDialog aviso;
+
+        if (respC == -1) {
 
             aviso = new AlertDialog.Builder(activity).create();
             aviso.setMessage(getResources().getString(R.string.falta_correcta));
@@ -241,7 +267,6 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
             new Consulta_EnviarPregunta(activity).execute();
 
         }
-
     }
 
     /**
@@ -326,12 +351,14 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
                         resp4.setText("");
                         juego.setText("");
                         respC = -1;
-                        btn1.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                        btn2.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                        btn3.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
-                        btn4.setBackgroundColor(getResources().getColor(R.color.rojogoogleP));
+                        btn1.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                        btn2.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                        btn3.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                        btn4.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
                     }
                 });
+
+                getFragmentManager().popBackStack();
 
                 //Sino se notificará de que el proceso ha fallado
             } else {

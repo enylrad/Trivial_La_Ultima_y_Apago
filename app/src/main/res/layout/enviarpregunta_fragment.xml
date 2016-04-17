@@ -1,241 +1,49 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayoutEnviar_Preguntas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blanco"
-    android:orientation="vertical"
-    tools:context=".MenuPrincipal">
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/cabecera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/rojogoogleP"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@string/titulo_envair"
+        android:text="@string/titulo_enviar"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/blanco"
         android:textSize="28sp" />
 
-    <ScrollView
+    <ViewFlipper
+        android:id="@+id/contenido"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cabecera">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:stretchColumns="1,2">
+        <include layout="@layout/enviarpregunta_formulario_fragment" />
 
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
+        <include layout="@layout/enviarpregunta_correcta_fragment" />
 
-                <TextView android:text="@string/preg" />
+    </ViewFlipper>
 
-                <EditText
-                    android:id="@+id/editpreg"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/preg_hint"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:maxLines="6"
-                    android:scrollHorizontally="false"
-                    android:textColor="@color/negro"
-                    android:textSize="18sp" />
+    <Button
+        android:id="@+id/gestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/boton"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/aceptar"
+        android:textAllCaps="true"
+        android:textColor="@color/blanco"
+        android:textSize="20sp" />
 
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/resp1" />
-
-                <EditText
-                    android:id="@+id/editresp1"
-                    android:hint="@string/resp1_hint" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/resp2" />
-
-                <EditText
-                    android:id="@+id/editresp2"
-                    android:hint="@string/resp2_hint" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/resp3" />
-
-                <EditText
-                    android:id="@+id/editresp3"
-                    android:hint="@string/resp3_hint" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/resp4" />
-
-                <EditText
-                    android:id="@+id/editresp4"
-                    android:hint="@string/resp4_hint" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/dificultad" />
-
-                <Spinner
-                    android:id="@+id/spinDif"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/categoria" />
-
-                <Spinner
-                    android:id="@+id/spinCat"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/juego" />
-
-                <EditText
-                    android:id="@+id/editjuego"
-                    android:hint="@string/franquicia_hint" />
-
-            </TableRow>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="bottom"
-                android:stretchColumns="*">
-
-                <TextView
-                    android:id="@+id/selecciona"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/seleciona"
-                    android:textColor="@color/negro"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/pregM"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/negro"
-                    android:textSize="16sp" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/boton_resp_1"
-                        android:layout_width="@dimen/activity_vertical_margin"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:background="@color/rojogoogleP"
-                        android:textAllCaps="false"
-                        android:textColor="@color/blanco"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:id="@+id/boton_resp_2"
-                        android:layout_width="@dimen/activity_vertical_margin"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:background="@color/rojogoogleP"
-                        android:textAllCaps="false"
-                        android:textColor="@color/blanco"
-                        android:textSize="16sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/boton_resp_3"
-                        android:layout_width="@dimen/activity_vertical_margin"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:background="@color/rojogoogleP"
-                        android:textAllCaps="false"
-                        android:textColor="@color/blanco"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:id="@+id/boton_resp_4"
-                        android:layout_width="@dimen/activity_vertical_margin"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:background="@color/rojogoogleP"
-                        android:textAllCaps="false"
-                        android:textColor="@color/blanco"
-                        android:textSize="16sp" />
-
-                </TableRow>
-
-            </TableLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="20dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
-
-                <Button
-                    android:id="@+id/enviar_preg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/boton"
-                    android:padding="18dp"
-                    android:text="@string/enviar"
-                    android:textAllCaps="true"
-                    android:textColor="@color/blanco"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-        </TableLayout>
-    </ScrollView>
-
-</LinearLayout>
+</RelativeLayout>

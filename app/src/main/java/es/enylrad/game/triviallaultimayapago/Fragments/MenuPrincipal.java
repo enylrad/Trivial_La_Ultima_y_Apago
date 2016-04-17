@@ -44,7 +44,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
     //Imagen inicio aplicacion
     private FrameLayout presentacion;
 
-    //Mensaje enviar
+    //Mensaje enviarpregunta_fragment
     private ImageView flecha_envia;
     private TextView texto_flecha_envia;
 
