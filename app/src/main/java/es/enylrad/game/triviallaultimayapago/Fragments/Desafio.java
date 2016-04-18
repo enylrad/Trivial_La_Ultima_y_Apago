@@ -24,10 +24,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.games.Games;
 
 import java.util.ArrayList;
 
+import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.BDTrivial;
 import es.enylrad.game.triviallaultimayapago.Main;
 import es.enylrad.game.triviallaultimayapago.Objetos.Estadisticas;
@@ -142,6 +144,10 @@ public class Desafio extends Fragment implements View.OnClickListener {
     private Main context;
     private View view;
     private BDTrivial bdTrivial;
+    /**
+     * The {@link Tracker} used to record screen views.
+     */
+    private Tracker mTracker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -149,6 +155,13 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
         this.context = (Main) getActivity();
         this.view = inflater.inflate(R.layout.desafio_fragment, container, false);
+
+        // [START shared_tracker]
+        // Obtain the shared Tracker instance.
+        AnalyticsApplication application = (AnalyticsApplication) context.getApplication();
+        mTracker = application.getDefaultTracker();
+        // [END shared_tracker]
+        context.sendScreenImageName(getClass().getName());
 
         this.bdTrivial = context.getBase_de_datos_trivial();
         context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -538,24 +551,24 @@ public class Desafio extends Fragment implements View.OnClickListener {
         estadisticas.setOtros_acertada(context.getSharedpreferences().getInt("otros_acertada", Main.MODE_PRIVATE) + estadisticas.getOtros_acertada());
         //Asignamos los resultados
         SharedPreferences.Editor estadisticas_share = context.getSharedpreferences().edit();
-        estadisticas_share.putInt("respondidas", estadisticas.getRespondidas());
-        estadisticas_share.putInt("acertadas", estadisticas.getAcertadas());
+        estadisticas_share.putInt("respondidas", (int) estadisticas.getRespondidas());
+        estadisticas_share.putInt("acertadas", (int) estadisticas.getAcertadas());
 
-        estadisticas_share.putInt("rpg_aventuras", estadisticas.getRpg_aventuras());
-        estadisticas_share.putInt("estrategia", estadisticas.getEstrategia());
-        estadisticas_share.putInt("lucha", estadisticas.getLucha());
-        estadisticas_share.putInt("platf_avent", estadisticas.getPlataf_avent());
-        estadisticas_share.putInt("shooter", estadisticas.getShooter());
-        estadisticas_share.putInt("deportes", estadisticas.getDeportes());
-        estadisticas_share.putInt("otros", estadisticas.getOtros());
+        estadisticas_share.putInt("rpg_aventuras", (int) estadisticas.getRpg_aventuras());
+        estadisticas_share.putInt("estrategia", (int) estadisticas.getEstrategia());
+        estadisticas_share.putInt("lucha", (int) estadisticas.getLucha());
+        estadisticas_share.putInt("platf_avent", (int) estadisticas.getPlataf_avent());
+        estadisticas_share.putInt("shooter", (int) estadisticas.getShooter());
+        estadisticas_share.putInt("deportes", (int) estadisticas.getDeportes());
+        estadisticas_share.putInt("otros", (int) estadisticas.getOtros());
 
-        estadisticas_share.putInt("rpg_aventuras_acertada", estadisticas.getRpg_aventuras_acertada());
-        estadisticas_share.putInt("estrategia_acertada", estadisticas.getEstrategia_acertada());
-        estadisticas_share.putInt("lucha_acertada", estadisticas.getLucha_acertada());
-        estadisticas_share.putInt("platf_avent_acertada", estadisticas.getPlataf_avent_acertada());
-        estadisticas_share.putInt("shooter_acertada", estadisticas.getShooter_acertada());
-        estadisticas_share.putInt("deportes_acertada", estadisticas.getDeportes_acertada());
-        estadisticas_share.putInt("otros_acertada", estadisticas.getOtros_acertada());
+        estadisticas_share.putInt("rpg_aventuras_acertada", (int) estadisticas.getRpg_aventuras_acertada());
+        estadisticas_share.putInt("estrategia_acertada", (int) estadisticas.getEstrategia_acertada());
+        estadisticas_share.putInt("lucha_acertada", (int) estadisticas.getLucha_acertada());
+        estadisticas_share.putInt("platf_avent_acertada", (int) estadisticas.getPlataf_avent_acertada());
+        estadisticas_share.putInt("shooter_acertada", (int) estadisticas.getShooter_acertada());
+        estadisticas_share.putInt("deportes_acertada", (int) estadisticas.getDeportes_acertada());
+        estadisticas_share.putInt("otros_acertada", (int) estadisticas.getOtros_acertada());
 
         estadisticas_share.apply();
 
@@ -605,58 +618,58 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
                 if (estadisticas.getRpg_aventuras_acertada() > 0) {
                     //RPG y Aventura
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_rpg_y_aventuras_grficas_1), estadisticas.getRpg_aventuras_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_rpg_y_aventuras_grficas_2), estadisticas.getRpg_aventuras_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_rpg_y_aventuras_grficas_3), estadisticas.getRpg_aventuras_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_rpg_y_aventuras_grficas_4), estadisticas.getRpg_aventuras_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_rpg_y_aventuras_grficas_1), (int) estadisticas.getRpg_aventuras_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_rpg_y_aventuras_grficas_2), (int) estadisticas.getRpg_aventuras_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_rpg_y_aventuras_grficas_3), (int) estadisticas.getRpg_aventuras_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_rpg_y_aventuras_grficas_4), (int) estadisticas.getRpg_aventuras_acertada());
                 }
 
                 if (estadisticas.getEstrategia_acertada() > 0) {
                     //Estrategia
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_estrategia_y_moba_1), estadisticas.getEstrategia_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_estrategia_y_moba_2), estadisticas.getEstrategia_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_estrategia_y_moba_3), estadisticas.getEstrategia_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_estrategia_y_moba_4), estadisticas.getEstrategia_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_estrategia_y_moba_1), (int) estadisticas.getEstrategia_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_estrategia_y_moba_2), (int) estadisticas.getEstrategia_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_estrategia_y_moba_3), (int) estadisticas.getEstrategia_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_estrategia_y_moba_4), (int) estadisticas.getEstrategia_acertada());
                 }
 
                 if (estadisticas.getLucha_acertada() > 0) {
                     //Lucha
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_lucha_1), estadisticas.getLucha_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_lucha_2), estadisticas.getLucha_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_lucha_3), estadisticas.getLucha_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_lucha_4), estadisticas.getLucha_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_lucha_1), (int) estadisticas.getLucha_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_lucha_2), (int) estadisticas.getLucha_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_lucha_3), (int) estadisticas.getLucha_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_lucha_4), (int) estadisticas.getLucha_acertada());
                 }
 
                 if (estadisticas.getPlataf_avent_acertada() > 0) {
                     //Platafomras y Aventura
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_plataformas_y_aventuras_1), estadisticas.getPlataf_avent_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_plataformas_y_aventuras_2), estadisticas.getPlataf_avent_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_plataformas_y_aventuras_3), estadisticas.getPlataf_avent_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_plataformas_y_aventuras_4), estadisticas.getPlataf_avent_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_plataformas_y_aventuras_1), (int) estadisticas.getPlataf_avent_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_plataformas_y_aventuras_2), (int) estadisticas.getPlataf_avent_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_plataformas_y_aventuras_3), (int) estadisticas.getPlataf_avent_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_plataformas_y_aventuras_4), (int) estadisticas.getPlataf_avent_acertada());
                 }
 
                 if (estadisticas.getShooter_acertada() > 0) {
                     //Shooter
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_shooter_1), estadisticas.getShooter_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_shooter_2), estadisticas.getShooter_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_shooter_3), estadisticas.getShooter_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_shooter_4), estadisticas.getShooter_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_shooter_1), (int) estadisticas.getShooter_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_shooter_2), (int) estadisticas.getShooter_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_shooter_3), (int) estadisticas.getShooter_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_shooter_4), (int) estadisticas.getShooter_acertada());
                 }
 
                 if (estadisticas.getDeportes_acertada() > 0) {
                     //Deportes
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_deportes_1), estadisticas.getDeportes_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_deportes_2), estadisticas.getDeportes_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_deportes_3), estadisticas.getDeportes_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_deportes_4), estadisticas.getDeportes_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_deportes_1), (int) estadisticas.getDeportes_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_deportes_2), (int) estadisticas.getDeportes_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_deportes_3), (int) estadisticas.getDeportes_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_deportes_4), (int) estadisticas.getDeportes_acertada());
                 }
 
                 if (estadisticas.getOtros_acertada() > 0) {
                     //Otros
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_otros_1), estadisticas.getOtros_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_otros_2), estadisticas.getOtros_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_otros_3), estadisticas.getOtros_acertada());
-                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_otros_4), estadisticas.getOtros_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_otros_1), (int) estadisticas.getOtros_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_otros_2), (int) estadisticas.getOtros_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_otros_3), (int) estadisticas.getOtros_acertada());
+                    Games.Achievements.increment(context.getmGoogleApiClient(), getResources().getString(R.string.achievement_otros_4), (int) estadisticas.getOtros_acertada());
 
                 }
 

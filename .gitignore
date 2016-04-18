@@ -36,3 +36,6 @@ ids.xml
 
 #NDK
 obj/
+
+//Analytics
+google-services.json

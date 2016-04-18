@@ -20,8 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.games.Games;
 
+import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.Main;
 import es.enylrad.game.triviallaultimayapago.R;
 import es.enylrad.game.triviallaultimayapago.SubProcesos.ComprobarVersion;
@@ -59,6 +61,10 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
     private View view;
     private Main activity;
+    /**
+     * The {@link Tracker} used to record screen views.
+     */
+    private Tracker mTracker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,6 +72,13 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
         this.activity = (Main) getActivity();
         this.view = inflater.inflate(R.layout.menu_fragment, container, false);
+
+        // [START shared_tracker]
+        // Obtain the shared Tracker instance.
+        AnalyticsApplication application = (AnalyticsApplication) activity.getApplication();
+        mTracker = application.getDefaultTracker();
+        // [END shared_tracker]
+        activity.sendScreenImageName(getClass().getName());
 
         configurarReferencias();
 

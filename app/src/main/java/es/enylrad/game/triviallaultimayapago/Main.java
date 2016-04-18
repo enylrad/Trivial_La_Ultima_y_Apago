@@ -29,6 +29,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
@@ -39,6 +41,7 @@ import com.rey.material.widget.ProgressView;
 
 import java.io.InputStream;
 
+import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.Fragments.Desafio;
 import es.enylrad.game.triviallaultimayapago.Fragments.EnviarPregunta;
 import es.enylrad.game.triviallaultimayapago.Fragments.MenuPrincipal;
@@ -89,11 +92,22 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     //PROFILE INFORMATION
     private ImageView imgProfilePic;
     private TextView txtName;
+    /**
+     * The {@link Tracker} used to record screen views.
+     */
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        // [START shared_tracker]
+        // Obtain the shared Tracker instance.
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+        sendScreenImageName(getClass().getName());
+        // [END shared_tracker]
 
         //Habilita el control de sonido en la aplicación.
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -534,6 +548,16 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         }
     }
 
+    //Analytics
+    public void sendScreenImageName(String name) {
+        // [START screen_view_hit]
+        Log.i(TAG, "Setting screen name: " + name);
+        mTracker.setScreenName("Image~" + name);
+        mTracker.send(new HitBuilders.ScreenViewBuilder()
+                .build());
+        // [END screen_view_hit]
+    }
+
     /**
      * Background Async task to load user profile picture from url
      */
@@ -561,6 +585,5 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             bmImage.setImageBitmap(result);
         }
     }
-
 
 }

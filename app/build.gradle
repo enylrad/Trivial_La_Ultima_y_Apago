@@ -7,8 +7,8 @@ android {
         applicationId 'es.enylrad.game.triviallaultimayapago'
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 70
-        versionName '2.0.1a'
+        versionCode 71
+        versionName '2.0.1b'
     }
     buildTypes {
         release {
@@ -25,6 +25,7 @@ repositories {
 }
 
 dependencies {
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.android.support:support-v4:23.3.0'
@@ -38,4 +39,10 @@ dependencies {
     //CircleImageView
     compile 'de.hdodenhof:circleimageview:2.0.0'
 
+    //Analytics
+    compile 'com.google.android.gms:play-services-analytics:8.4.0'
+
 }
+
+//Analytics
+apply plugin: 'com.google.gms.google-services'
