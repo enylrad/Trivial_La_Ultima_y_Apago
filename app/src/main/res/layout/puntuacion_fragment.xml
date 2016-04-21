@@ -1,12 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="20dp"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
-    android:layout_marginTop="60dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="40dp"
     android:background="@drawable/border"
-    android:gravity="end"
     android:orientation="vertical">
 
     <TextView
@@ -16,120 +13,163 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/puntuaciones"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/blanco"
-        android:textSize="28sp" />
+        android:textSize="26sp" />
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:weightSum="5">
 
-        <TableLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fallos"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtnumfallos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="Resultado 1"
+                android:textColor="@color/firebrick"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aciertos"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtnumaciertos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="Resultado 1"
+                android:textColor="@color/verde"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aciertosseguidos"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtnumconsecutivos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="Resultado 1"
+                android:textColor="@color/negro"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sumados"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtsuma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="Resultado 1"
+                android:textColor="@color/verde"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/restados"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtrestados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="Resultado 1"
+                android:textColor="@color/firebrick"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txttotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/total"
+            android:textColor="@color/negro"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-            <TableRow
-                android:layout_marginBottom="5dp"
-                android:minHeight="40dp">
+        <Button
+            android:id="@+id/aceptar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="@drawable/selector_boton_rojo"
+            android:gravity="center"
+            android:padding="20dp"
+            android:stateListAnimator="@null"
+            android:text="@string/aceptar"
+            android:textAllCaps="true"
+            android:textColor="@color/blanco"
+            android:textSize="20sp" />
 
-                <TextView android:text="@string/fallos" />
-
-                <TextView
-                    android:id="@+id/txtnumfallos"
-                    android:text="Resultado 1"
-                    android:textColor="@color/firebrick" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="5dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/aciertos" />
-
-                <TextView
-                    android:id="@+id/txtnumaciertos"
-                    android:text="Resultado 1"
-                    android:textColor="@color/verde" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="5dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/aciertosseguidos" />
-
-                <TextView
-                    android:id="@+id/txtnumconsecutivos"
-                    android:text="Resultado 1"
-                    android:textColor="@color/negro" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="5dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/sumados" />
-
-                <TextView
-                    android:id="@+id/txtsuma"
-                    android:text="Resultado 1"
-                    android:textColor="@color/verde" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="10dp"
-                android:minHeight="40dp">
-
-                <TextView android:text="@string/restados" />
-
-                <TextView
-                    android:id="@+id/txtrestados"
-                    android:text="Resultado 1"
-                    android:textColor="@color/firebrick" />
-
-            </TableRow>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/txttotal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/total"
-                    android:textColor="@color/negro"
-                    android:textSize="30sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
-
-                <Button
-                    android:id="@+id/aceptar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/boton"
-                    android:gravity="center"
-                    android:padding="20dp"
-                    android:text="@string/aceptar"
-                    android:textAllCaps="true"
-                    android:textColor="@color/blanco"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-
-        </TableLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>

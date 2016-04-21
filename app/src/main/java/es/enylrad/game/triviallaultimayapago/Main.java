@@ -41,6 +41,7 @@ import com.rey.material.widget.ProgressView;
 
 import java.io.InputStream;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.Fragments.Desafio;
 import es.enylrad.game.triviallaultimayapago.Fragments.EnviarPregunta;
@@ -90,7 +91,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     private RelativeLayout btn_about;
 
     //PROFILE INFORMATION
-    private ImageView imgProfilePic;
+    private CircleImageView imgProfilePic;
     private TextView txtName;
     /**
      * The {@link Tracker} used to record screen views.
@@ -388,15 +389,12 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
      */
     private void configurarDrawerMenu() {
 
-        AppCompatDialog alerta;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.id_drawerlayout);
 
         btn_estadisticas = (RelativeLayout) findViewById(R.id.boton_estadisticas);
         btn_enviar_preg = (RelativeLayout) findViewById(R.id.boton_enviar_preg);
         btn_about = (RelativeLayout) findViewById(R.id.boton_about);
-        imgProfilePic = (ImageView) findViewById(R.id.imagen_usuario);
+        imgProfilePic = (CircleImageView) findViewById(R.id.imagen_usuario);
         txtName = (TextView) findViewById(R.id.nombre_usuario);
 
         btn_estadisticas.setOnClickListener(new View.OnClickListener() {

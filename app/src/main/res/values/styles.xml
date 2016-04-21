@@ -32,10 +32,6 @@
         <item name="android:layout_weight">70</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:textSize">22sp</item>
-        <item name="android:shadowColor">#000000</item>
-        <item name="android:shadowDx">3</item>
-        <item name="android:shadowDy">3</item>
-        <item name="android:shadowRadius">3</item>
     </style>
 
     <style name="EstadisticasTextViewPorcentaje">
@@ -45,10 +41,6 @@
         <item name="android:text">@string/ejemplo_porcentaje</item>
         <item name="android:textSize">22sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:shadowColor">#000000</item>
-        <item name="android:shadowDx">3</item>
-        <item name="android:shadowDy">3</item>
-        <item name="android:shadowRadius">3</item>
     </style>
 
     <!-- enviar_pregunta -->
@@ -67,10 +59,6 @@
         <item name="android:gravity">center|left</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:shadowColor">#000000</item>
-        <item name="android:shadowDx">3</item>
-        <item name="android:shadowDy">3</item>
-        <item name="android:shadowRadius">3</item>
     </style>
 
     <style name="EnviarPreguntaEditText">
@@ -79,10 +67,6 @@
         <item name="android:layout_weight">60</item>
         <item name="android:textSize">20sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:shadowColor">#000000</item>
-        <item name="android:shadowDx">3</item>
-        <item name="android:shadowDy">3</item>
-        <item name="android:shadowRadius">3</item>
         <item name="android:inputType">textCapSentences|textMultiLine</item>
         <item name="android:maxLines">6</item>
         <item name="android:scrollHorizontally">false</item>

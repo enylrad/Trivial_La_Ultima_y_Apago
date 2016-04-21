@@ -70,7 +70,7 @@
     <string name="juego">Franquicia:</string>
     <string name="dificultad">Dificultad:</string>
     <string name="seleciona">Selecciona la respuesta correcta</string>
-    <string name="titulo_enviar">Rellena el formulario</string>
+    <string name="titulo_enviar">Envianos una pregunta</string>
     <string name="falta">Se debe rellenar todos los campos para poder enviar la pregunta.</string>
     <string name="falta_correcta">Falta introducir la respuesta correcta. Seleccione una respuesta antes de enviar.</string>
     <string name="faltan_resp">Se debe rellenar todos los campos para poder enviar la pregunta</string>

@@ -223,8 +223,8 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
         view.findViewById(R.id.sign_out_button).setVisibility(signin ? View.VISIBLE : View.GONE);
 
-        logros.setBackground(signin ? getResources().getDrawable(R.drawable.boton) : getResources().getDrawable(R.color.gris));
-        marcad.setBackground(signin ? getResources().getDrawable(R.drawable.boton) : getResources().getDrawable(R.color.gris));
+        logros.setBackground(signin ? getResources().getDrawable(R.drawable.selector_boton_rojo) : getResources().getDrawable(R.color.gris));
+        marcad.setBackground(signin ? getResources().getDrawable(R.drawable.selector_boton_rojo) : getResources().getDrawable(R.color.gris));
 
         view.findViewById(R.id.sign_in_button).setVisibility(signin ? View.GONE : View.VISIBLE);
 

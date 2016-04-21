@@ -15,14 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/dibujo_tablero" />
+            android:src="@drawable/img_dibujo_tablero" />
 
         <ImageView
             android:id="@+id/tablero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/tablero" />
+            android:src="@drawable/img_tablero" />
 
 
         <ImageView
@@ -30,49 +30,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/flecha_amarrilla" />
+            android:src="@drawable/img_flecha_amarrilla" />
 
         <ImageView
             android:id="@+id/azul_c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/flecha_azul_claro" />
+            android:src="@drawable/img_flecha_azul_claro" />
 
         <ImageView
             android:id="@+id/azul_o"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/flecha_azul_oscura" />
+            android:src="@drawable/img_flecha_azul_oscura" />
 
         <ImageView
             android:id="@+id/naranja"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/flecha_naranja" />
+            android:src="@drawable/img_flecha_naranja" />
 
         <ImageView
             android:id="@+id/rojo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/flecha_roja" />
+            android:src="@drawable/img_flecha_roja" />
 
         <ImageView
             android:id="@+id/rosa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/flecha_rosa" />
+            android:src="@drawable/img_flecha_rosa" />
 
         <ImageView
             android:id="@+id/verde"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/flecha_verde" />
+            android:src="@drawable/img_flecha_verde" />
 
         <TextView
             android:id="@+id/punt_total"
@@ -156,7 +156,7 @@
         android:layout_height="20dp"
         android:indeterminate="false"
         android:max="600"
-        android:progressDrawable="@drawable/color_green_progressbar" />
+        android:progressDrawable="@drawable/progressbar_color_green" />
 
 
 </LinearLayout>

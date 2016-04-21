@@ -197,37 +197,37 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
 
             case R.id.boton_resp_1:
 
-                btn1.setBackground(getResources().getDrawable(R.drawable.boton_verde));
-                btn2.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                btn3.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                btn4.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn1.setBackground(getResources().getDrawable(R.drawable.btn_verde));
+                btn2.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                btn3.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                btn4.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
                 respC = 0;
                 break;
 
             case R.id.boton_resp_2:
 
-                btn2.setBackground(getResources().getDrawable(R.drawable.boton_verde));
-                btn1.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                btn3.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                btn4.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn2.setBackground(getResources().getDrawable(R.drawable.btn_verde));
+                btn1.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                btn3.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                btn4.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
                 respC = 1;
                 break;
 
             case R.id.boton_resp_3:
 
-                btn3.setBackground(getResources().getDrawable(R.drawable.boton_verde));
-                btn1.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                btn2.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                btn4.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn3.setBackground(getResources().getDrawable(R.drawable.btn_verde));
+                btn1.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                btn2.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                btn4.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
                 respC = 2;
                 break;
 
             case R.id.boton_resp_4:
 
-                btn4.setBackground(getResources().getDrawable(R.drawable.boton_verde));
-                btn1.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                btn2.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                btn3.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                btn4.setBackground(getResources().getDrawable(R.drawable.btn_verde));
+                btn1.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                btn2.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                btn3.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
                 respC = 3;
                 break;
 
@@ -365,10 +365,10 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
                         resp4.setText("");
                         juego.setText("");
                         respC = -1;
-                        btn1.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                        btn2.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                        btn3.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
-                        btn4.setBackground(getResources().getDrawable(R.drawable.boton_rojo));
+                        btn1.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                        btn2.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                        btn3.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
+                        btn4.setBackground(getResources().getDrawable(R.drawable.btn_rojo_push));
                     }
                 });
 

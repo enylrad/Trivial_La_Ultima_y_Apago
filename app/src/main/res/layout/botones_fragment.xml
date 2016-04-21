@@ -18,28 +18,28 @@
 
     <include
         android:id="@+id/respuesta_1"
-        layout="@layout/desafio_boton"
+        layout="@layout/btn_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="2dp" />
 
     <include
         android:id="@+id/respuesta_2"
-        layout="@layout/desafio_boton"
+        layout="@layout/btn_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="2dp" />
 
     <include
         android:id="@+id/respuesta_3"
-        layout="@layout/desafio_boton"
+        layout="@layout/btn_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="2dp" />
 
     <include
         android:id="@+id/respuesta_4"
-        layout="@layout/desafio_boton"
+        layout="@layout/btn_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="2dp" />

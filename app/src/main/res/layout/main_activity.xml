@@ -13,7 +13,7 @@
 
     <!--menu-->
     <include
-        layout="@layout/main_menulateral_fragment"
+        layout="@layout/menu_lateral_fragment"
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start" />

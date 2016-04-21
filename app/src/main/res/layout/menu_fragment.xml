@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@drawable/boton"
+            android:background="@drawable/selector_boton_rojo"
             android:padding="18dp"
             android:stateListAnimator="@null"
             android:text="@string/desafio"
@@ -62,7 +62,7 @@
                 android:layout_marginBottom="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_weight="50"
-                android:background="@drawable/boton"
+                android:background="@drawable/selector_boton_rojo"
                 android:padding="14dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_logros" />
@@ -73,11 +73,10 @@
                 android:layout_height="57dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="50"
-                android:background="@drawable/boton"
+                android:background="@drawable/selector_boton_rojo"
                 android:padding="14dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_puntuaciones" />
-
 
         </LinearLayout>
 
@@ -85,7 +84,7 @@
             android:id="@+id/podcast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/boton"
+            android:background="@drawable/selector_boton_rojo"
             android:padding="18dp"
             android:stateListAnimator="@null"
             android:text="@string/podcast"
@@ -114,7 +113,7 @@
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/mostrar_menu_lateral"
         android:layout_toRightOf="@+id/mostrar_menu_lateral"
-        android:src="@drawable/flecha_envia_preguntas"
+        android:src="@drawable/img_flecha_envia_preguntas"
         android:visibility="gone" />
 
     <TextView

@@ -3,7 +3,8 @@
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:background="@color/blanco"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="15dp">
 
     <LinearLayout style="@style/EnviarPreguntaLinearLayout">
 

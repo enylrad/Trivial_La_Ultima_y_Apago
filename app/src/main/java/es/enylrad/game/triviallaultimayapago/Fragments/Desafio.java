@@ -728,9 +728,9 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
                                 //Color de la barra
                                 if (segundos_actuales >= 400) {
-                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.color_green_progressbar));
+                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_color_green));
                                 } else if (segundos_actuales < 400 && segundos_actuales >= 200) {
-                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.color_yellow_progressbar));
+                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_color_yellow));
                                     if (time_over.isPlaying()) {
                                         time_over.pause();
                                     }
@@ -738,7 +738,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
                                     if (!time_over.isPlaying() && !pausado) {
                                         time_over.start();
                                     }
-                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.color_red_progressbar));
+                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_color_red));
                                 }
 
                             } catch (IllegalStateException ignored) {
@@ -807,11 +807,11 @@ public class Desafio extends Fragment implements View.OnClickListener {
                                 txt_segundos_progreso.setText(segundos);
 
                                 if (segundos_actuales >= 400) {
-                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.color_green_progressbar));
+                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_color_green));
                                 } else if (segundos_actuales < 400 && segundos_actuales >= 200) {
-                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.color_yellow_progressbar));
+                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_color_yellow));
                                 } else if (segundos_actuales < 150) {
-                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.color_red_progressbar));
+                                    barra_progreso_tiempo.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_color_red));
                                 }
 
                             } catch (IllegalStateException ignored) {
@@ -882,12 +882,12 @@ public class Desafio extends Fragment implements View.OnClickListener {
         anim_fin_fondo = AnimationUtils.loadAnimation(context, R.anim.anim_fin_fondo);
 
         //Sonidos
-        ding = MediaPlayer.create(context, R.raw.ding_inicio);
-        gameover = MediaPlayer.create(context, R.raw.game_over);
-        countdown = MediaPlayer.create(context, R.raw.countdown);
-        success = MediaPlayer.create(context, R.raw.success);
-        failure = MediaPlayer.create(context, R.raw.failure);
-        time_over = MediaPlayer.create(context, R.raw.timeover);
+        ding = MediaPlayer.create(context, R.raw.sound_ding_inicio);
+        gameover = MediaPlayer.create(context, R.raw.sound_game_over);
+        countdown = MediaPlayer.create(context, R.raw.sound_countdown);
+        success = MediaPlayer.create(context, R.raw.sound_success);
+        failure = MediaPlayer.create(context, R.raw.sound_failure);
+        time_over = MediaPlayer.create(context, R.raw.sound_timeover);
 
         barra_progreso_tiempo = (ProgressBar) view.findViewById(R.id.progressBar);
 
@@ -1139,97 +1139,97 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
             case 1:
 
-                amarillo.setImageResource(R.drawable.flecha_amarrilla);
-                azul_c.setImageResource(R.drawable.flecha_azul_claro);
-                azul_o.setImageResource(R.drawable.flecha_azul_oscura_iluminada);
-                naranja.setImageResource(R.drawable.flecha_naranja);
-                rojo.setImageResource(R.drawable.flecha_roja);
-                rosa.setImageResource(R.drawable.flecha_rosa);
-                verde.setImageResource(R.drawable.flecha_verde);
+                amarillo.setImageResource(R.drawable.img_flecha_amarrilla);
+                azul_c.setImageResource(R.drawable.img_flecha_azul_claro);
+                azul_o.setImageResource(R.drawable.img_flecha_azul_oscura_iluminada);
+                naranja.setImageResource(R.drawable.img_flecha_naranja);
+                rojo.setImageResource(R.drawable.img_flecha_roja);
+                rosa.setImageResource(R.drawable.img_flecha_rosa);
+                verde.setImageResource(R.drawable.img_flecha_verde);
 
                 break;
 
             case 2:
 
-                amarillo.setImageResource(R.drawable.flecha_amarrilla);
-                azul_c.setImageResource(R.drawable.flecha_azul_claro);
-                azul_o.setImageResource(R.drawable.flecha_azul_oscura);
-                naranja.setImageResource(R.drawable.flecha_naranja_iluminada);
-                rojo.setImageResource(R.drawable.flecha_roja);
-                rosa.setImageResource(R.drawable.flecha_rosa);
-                verde.setImageResource(R.drawable.flecha_verde);
+                amarillo.setImageResource(R.drawable.img_flecha_amarrilla);
+                azul_c.setImageResource(R.drawable.img_flecha_azul_claro);
+                azul_o.setImageResource(R.drawable.img_flecha_azul_oscura);
+                naranja.setImageResource(R.drawable.img_flecha_naranja_iluminada);
+                rojo.setImageResource(R.drawable.img_flecha_roja);
+                rosa.setImageResource(R.drawable.img_flecha_rosa);
+                verde.setImageResource(R.drawable.img_flecha_verde);
 
                 break;
 
             case 3:
 
-                amarillo.setImageResource(R.drawable.flecha_amarrilla);
-                azul_c.setImageResource(R.drawable.flecha_azul_claro);
-                azul_o.setImageResource(R.drawable.flecha_azul_oscura);
-                naranja.setImageResource(R.drawable.flecha_naranja);
-                rojo.setImageResource(R.drawable.flecha_roja_iluminada);
-                rosa.setImageResource(R.drawable.flecha_rosa);
-                verde.setImageResource(R.drawable.flecha_verde);
+                amarillo.setImageResource(R.drawable.img_flecha_amarrilla);
+                azul_c.setImageResource(R.drawable.img_flecha_azul_claro);
+                azul_o.setImageResource(R.drawable.img_flecha_azul_oscura);
+                naranja.setImageResource(R.drawable.img_flecha_naranja);
+                rojo.setImageResource(R.drawable.img_flecha_roja_iluminada);
+                rosa.setImageResource(R.drawable.img_flecha_rosa);
+                verde.setImageResource(R.drawable.img_flecha_verde);
 
                 break;
 
             case 4:
 
-                amarillo.setImageResource(R.drawable.flecha_amarilla_iluminada);
-                azul_c.setImageResource(R.drawable.flecha_azul_claro);
-                azul_o.setImageResource(R.drawable.flecha_azul_oscura);
-                naranja.setImageResource(R.drawable.flecha_naranja);
-                rojo.setImageResource(R.drawable.flecha_roja);
-                rosa.setImageResource(R.drawable.flecha_rosa);
-                verde.setImageResource(R.drawable.flecha_verde);
+                amarillo.setImageResource(R.drawable.img_flecha_amarilla_iluminada);
+                azul_c.setImageResource(R.drawable.img_flecha_azul_claro);
+                azul_o.setImageResource(R.drawable.img_flecha_azul_oscura);
+                naranja.setImageResource(R.drawable.img_flecha_naranja);
+                rojo.setImageResource(R.drawable.img_flecha_roja);
+                rosa.setImageResource(R.drawable.img_flecha_rosa);
+                verde.setImageResource(R.drawable.img_flecha_verde);
 
                 break;
 
             case 5:
 
-                amarillo.setImageResource(R.drawable.flecha_amarrilla);
-                azul_c.setImageResource(R.drawable.flecha_azul_claro);
-                azul_o.setImageResource(R.drawable.flecha_azul_oscura);
-                naranja.setImageResource(R.drawable.flecha_naranja);
-                rojo.setImageResource(R.drawable.flecha_roja);
-                rosa.setImageResource(R.drawable.flecha_rosa);
-                verde.setImageResource(R.drawable.flecha_verde_iluminada);
+                amarillo.setImageResource(R.drawable.img_flecha_amarrilla);
+                azul_c.setImageResource(R.drawable.img_flecha_azul_claro);
+                azul_o.setImageResource(R.drawable.img_flecha_azul_oscura);
+                naranja.setImageResource(R.drawable.img_flecha_naranja);
+                rojo.setImageResource(R.drawable.img_flecha_roja);
+                rosa.setImageResource(R.drawable.img_flecha_rosa);
+                verde.setImageResource(R.drawable.img_flecha_verde_iluminada);
 
                 break;
 
             case 6:
 
-                amarillo.setImageResource(R.drawable.flecha_amarrilla);
-                azul_c.setImageResource(R.drawable.flecha_azul_claro_iluminada);
-                azul_o.setImageResource(R.drawable.flecha_azul_oscura);
-                naranja.setImageResource(R.drawable.flecha_naranja);
-                rojo.setImageResource(R.drawable.flecha_roja);
-                rosa.setImageResource(R.drawable.flecha_rosa);
-                verde.setImageResource(R.drawable.flecha_verde);
+                amarillo.setImageResource(R.drawable.img_flecha_amarrilla);
+                azul_c.setImageResource(R.drawable.img_flecha_azul_claro_iluminada);
+                azul_o.setImageResource(R.drawable.img_flecha_azul_oscura);
+                naranja.setImageResource(R.drawable.img_flecha_naranja);
+                rojo.setImageResource(R.drawable.img_flecha_roja);
+                rosa.setImageResource(R.drawable.img_flecha_rosa);
+                verde.setImageResource(R.drawable.img_flecha_verde);
 
                 break;
 
             case 7:
 
-                amarillo.setImageResource(R.drawable.flecha_amarrilla);
-                azul_c.setImageResource(R.drawable.flecha_azul_claro);
-                azul_o.setImageResource(R.drawable.flecha_azul_oscura);
-                naranja.setImageResource(R.drawable.flecha_naranja);
-                rojo.setImageResource(R.drawable.flecha_roja);
-                rosa.setImageResource(R.drawable.flecha_rosa_iluminada);
-                verde.setImageResource(R.drawable.flecha_verde);
+                amarillo.setImageResource(R.drawable.img_flecha_amarrilla);
+                azul_c.setImageResource(R.drawable.img_flecha_azul_claro);
+                azul_o.setImageResource(R.drawable.img_flecha_azul_oscura);
+                naranja.setImageResource(R.drawable.img_flecha_naranja);
+                rojo.setImageResource(R.drawable.img_flecha_roja);
+                rosa.setImageResource(R.drawable.img_flecha_rosa_iluminada);
+                verde.setImageResource(R.drawable.img_flecha_verde);
 
                 break;
 
             default:
 
-                amarillo.setImageResource(R.drawable.flecha_amarrilla);
-                azul_c.setImageResource(R.drawable.flecha_azul_claro);
-                azul_o.setImageResource(R.drawable.flecha_azul_oscura);
-                naranja.setImageResource(R.drawable.flecha_naranja);
-                rojo.setImageResource(R.drawable.flecha_roja);
-                rosa.setImageResource(R.drawable.flecha_rosa);
-                verde.setImageResource(R.drawable.flecha_verde);
+                amarillo.setImageResource(R.drawable.img_flecha_amarrilla);
+                azul_c.setImageResource(R.drawable.img_flecha_azul_claro);
+                azul_o.setImageResource(R.drawable.img_flecha_azul_oscura);
+                naranja.setImageResource(R.drawable.img_flecha_naranja);
+                rojo.setImageResource(R.drawable.img_flecha_roja);
+                rosa.setImageResource(R.drawable.img_flecha_rosa);
+                verde.setImageResource(R.drawable.img_flecha_verde);
 
                 break;
 
@@ -1392,7 +1392,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
             } else {
 
-                img.setImageResource(R.drawable.ic_incorrecta);
+                img.setImageResource(R.drawable.ic_incorrecto);
 
             }
 
@@ -1441,40 +1441,76 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
         public void animacionElementoCorrecto() {
 
+
             TransitionDrawable colorAnim;
 
             switch (posicion_respuesta_correcta) {
 
-
                 case 0:
 
+                    respuesta1.setBackground(getResources().getDrawable(R.drawable.bg_respuesta_correcta));
                     colorAnim = (TransitionDrawable) respuesta1.getBackground();
                     colorAnim.startTransition(300);
                     colorAnim.reverseTransition(1000);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            respuesta1.setBackground(getResources().getDrawable(R.drawable.selector_boton_preg));
+                        }
+                    }, 1300);
 
                     break;
 
                 case 1:
 
+                    respuesta2.setBackground(getResources().getDrawable(R.drawable.bg_respuesta_correcta));
                     colorAnim = (TransitionDrawable) respuesta2.getBackground();
                     colorAnim.startTransition(300);
                     colorAnim.reverseTransition(1000);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            respuesta2.setBackground(getResources().getDrawable(R.drawable.selector_boton_preg));
+                        }
+                    }, 1300);
 
                     break;
 
                 case 2:
 
+                    respuesta3.setBackground(getResources().getDrawable(R.drawable.bg_respuesta_correcta));
                     colorAnim = (TransitionDrawable) respuesta3.getBackground();
                     colorAnim.startTransition(300);
                     colorAnim.reverseTransition(1000);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            respuesta3.setBackground(getResources().getDrawable(R.drawable.selector_boton_preg));
+                        }
+                    }, 1300);
 
                     break;
 
                 case 3:
 
+                    respuesta4.setBackground(getResources().getDrawable(R.drawable.bg_respuesta_correcta));
                     colorAnim = (TransitionDrawable) respuesta4.getBackground();
                     colorAnim.startTransition(300);
                     colorAnim.reverseTransition(1000);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            respuesta4.setBackground(getResources().getDrawable(R.drawable.selector_boton_preg));
+                        }
+                    }, 1300);
 
                     break;
 
