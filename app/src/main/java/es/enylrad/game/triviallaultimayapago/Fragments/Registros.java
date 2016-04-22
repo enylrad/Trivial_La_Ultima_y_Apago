@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.Main;
 import es.enylrad.game.triviallaultimayapago.Objetos.Estadisticas;
 import es.enylrad.game.triviallaultimayapago.Otros.MetodosEstaticos;
@@ -55,12 +55,11 @@ public class Registros extends Fragment implements View.OnClickListener {
         this.activity = (Main) getActivity();
         this.view = inflater.inflate(R.layout.estadisticas_fragment, container, false);
 
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) activity.getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
-        activity.sendScreenImageName(getClass().getName());
+
+        this.mTracker = activity.getmTracker();
+        mTracker.setScreenName(getClass().getSimpleName());
+        mTracker.send(new HitBuilders.ScreenViewBuilder()
+                .build());
 
         configurarRegistro();
 

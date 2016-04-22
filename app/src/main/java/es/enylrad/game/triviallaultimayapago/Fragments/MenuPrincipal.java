@@ -20,10 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.games.Games;
 
-import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.Main;
 import es.enylrad.game.triviallaultimayapago.R;
 import es.enylrad.game.triviallaultimayapago.SubProcesos.ComprobarVersion;
@@ -42,6 +42,8 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
     private ImageButton logros;
     private ImageButton marcad;
     private ImageButton mostrar_menu_lateral;
+    private ImageView estadisticas;
+    private ImageView enviar_preg;
 
     //Imagen inicio aplicacion
     private FrameLayout presentacion;
@@ -73,16 +75,15 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
         this.activity = (Main) getActivity();
         this.view = inflater.inflate(R.layout.menu_fragment, container, false);
 
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) activity.getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
-        activity.sendScreenImageName(getClass().getName());
+        this.mTracker = activity.getmTracker();
+        mTracker.setScreenName(getClass().getSimpleName());
+        mTracker.send(new HitBuilders.ScreenViewBuilder()
+                .build());
 
         configurarReferencias();
 
-        activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        //activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         return view;
     }
@@ -104,7 +105,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
     private void configurarReferencias() {
 
         desafio = (Button) view.findViewById(R.id.desafio);
-        mostrar_menu_lateral = (ImageButton) view.findViewById(R.id.mostrar_menu_lateral);
+        //  mostrar_menu_lateral = (ImageButton) view.findViewById(R.id.mostrar_menu_lateral);
         logros = (ImageButton) view.findViewById(R.id.logros);
         marcad = (ImageButton) view.findViewById(R.id.marcad);
         podcast = (Button) view.findViewById(R.id.podcast);
@@ -117,6 +118,11 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
         anim_presentacion = AnimationUtils.loadAnimation(activity, R.anim.anim_presentacion);
         anim_envia_preg = AnimationUtils.loadAnimation(activity, R.anim.anim_flecha_envia);
 
+        estadisticas = (ImageView) view.findViewById(R.id.estadisticas);
+        enviar_preg = (ImageView) view.findViewById(R.id.enviar_preg);
+
+
+
     }
 
     private void configListener() {
@@ -126,11 +132,13 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
         logros.setOnClickListener(this);
         marcad.setOnClickListener(this);
         podcast.setOnClickListener(this);
-        mostrar_menu_lateral.setOnClickListener(this);
+        //   mostrar_menu_lateral.setOnClickListener(this);
 
         //Botones para el login de google+
         view.findViewById(R.id.sign_in_button).setOnClickListener(this);
         view.findViewById(R.id.sign_out_button).setOnClickListener(this);
+        enviar_preg.setOnClickListener(this);
+        estadisticas.setOnClickListener(this);
     }
 
     @Override
@@ -206,11 +214,32 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
                 gestionBotones(false);
                 break;
 
-            case R.id.mostrar_menu_lateral:
+            //Comentado al quitar
+            /*case R.id.mostrar_menu_lateral:
 
                 activity.openDrawer();
 
+                break;*/
+
+            case R.id.enviar_preg:
+
+                ft = getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_go_in, R.anim.slide_go_out, R.anim.slide_back_in, R.anim.slide_back_out)
+                        .replace(R.id.container, new EnviarPregunta(), EnviarPregunta.TAG_FRAGMENT)
+                        .addToBackStack(MenuPrincipal.TAG_FRAGMENT);
+                ft.commit();
                 break;
+
+            case R.id.estadisticas:
+
+                ft = getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_go_in, R.anim.slide_go_out, R.anim.slide_back_in, R.anim.slide_back_out)
+                        .replace(R.id.container, new Registros(), Registros.TAG_FRAGMENT)
+                        .addToBackStack(MenuPrincipal.TAG_FRAGMENT);
+                ft.commit();
+
+                break;
+
         }
     }
 
@@ -242,7 +271,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
         logros.setClickable(pulsable);
         marcad.setClickable(pulsable);
         podcast.setClickable(pulsable);
-        mostrar_menu_lateral.setClickable(pulsable);
+//        mostrar_menu_lateral.setClickable(pulsable);
 
         view.findViewById(R.id.sign_in_button).setClickable(pulsable);
         view.findViewById(R.id.sign_out_button).setClickable(pulsable);

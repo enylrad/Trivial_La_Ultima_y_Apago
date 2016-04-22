@@ -24,12 +24,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.games.Games;
 
 import java.util.ArrayList;
 
-import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.BDTrivial;
 import es.enylrad.game.triviallaultimayapago.Main;
 import es.enylrad.game.triviallaultimayapago.Objetos.Estadisticas;
@@ -155,13 +155,12 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
         this.context = (Main) getActivity();
         this.view = inflater.inflate(R.layout.desafio_fragment, container, false);
+        this.mTracker = context.getmTracker();
 
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) context.getApplication();
-        mTracker = application.getDefaultTracker();
         // [END shared_tracker]
-        context.sendScreenImageName(getClass().getName());
+        mTracker.setScreenName(getClass().getSimpleName());
+        mTracker.send(new HitBuilders.ScreenViewBuilder()
+                .build());
 
         this.bdTrivial = context.getBase_de_datos_trivial();
         context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -182,6 +181,10 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
         txt_puntuacion.setText("0");
 
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Desafio")
+                .setAction("Partida nueva")
+                .build());
         realizarPreguntaNueva();
 
         animacion_inicial = new animacionInicioDesafio().execute();
@@ -192,6 +195,11 @@ public class Desafio extends Fragment implements View.OnClickListener {
      * Proceso para buscar pregunta nueva
      */
     public void realizarPreguntaNueva() {
+
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Desafio")
+                .setAction("Pregunta Realizada")
+                .build());
 
         elegirCategoria();
         gestionarImagenesTablero();
@@ -296,6 +304,11 @@ public class Desafio extends Fragment implements View.OnClickListener {
      */
     public void respuestaCorrecta(int pulsado) {
 
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Desafio")
+                .setAction("Pregunta Correcta")
+                .build());
+
         int puntuacion_actual_temp = puntuacion_actual;
 
         //Incrementamos variables de control
@@ -351,17 +364,23 @@ public class Desafio extends Fragment implements View.OnClickListener {
      */
     public void respuestaIncorrecta(int pulsado) {
 
+        mTracker.send(new HitBuilders.EventBuilder()
+                .setCategory("Desafio")
+                .setAction("Pregunta Incorrecta")
+                .build());
+
         int puntos_restados_error = 150;
         int puntuacion_actual_temp = puntuacion_actual;
 
-        //Incrementamos variables de control
-        aciertos_consecutivos = 0;
         //Comprobamos el valor que se le va a sumar
         puntuacionRespuestasConsecutivas();
 
         //Comprobamos y asignamos los maximo aciertos seguidos
         if (max_aciertos_seguidos < aciertos_consecutivos)
             max_aciertos_seguidos = aciertos_consecutivos;
+
+        //Incrementamos variables de control
+        aciertos_consecutivos = 0;
 
         //Incrementamos estadisticas
         total_fallos++;
@@ -706,7 +725,11 @@ public class Desafio extends Fragment implements View.OnClickListener {
             @Override
             public void run() {
 
+                int tiempo = 0;
+
                 while (segundos_actuales > 0) {
+
+                    tiempo += 1;
 
                     segundos_actuales -= 1;
 
@@ -759,6 +782,13 @@ public class Desafio extends Fragment implements View.OnClickListener {
                 if (time_over.isPlaying()) {
                     time_over.stop();
                 }
+
+                // Build and send a timing hit.
+                mTracker.send(new HitBuilders.TimingBuilder()
+                        .setCategory("Desafio")
+                        .setValue(tiempo / 10)
+                        .setVariable("Tiempo partida")
+                        .build());
 
                 context.runOnUiThread(new Runnable() {
                     @Override
@@ -1582,6 +1612,11 @@ public class Desafio extends Fragment implements View.OnClickListener {
             arguments.putInt("total_puntuacion", puntuacion_actual);
 
             try {
+
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Desafio")
+                        .setAction("Partida Finalizada")
+                        .build());
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.slide_puntuaciones_go_in, R.anim.slide_puntuaciones_go_out);

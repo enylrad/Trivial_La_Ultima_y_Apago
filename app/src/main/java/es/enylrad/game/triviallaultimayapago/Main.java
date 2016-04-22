@@ -1,15 +1,10 @@
 package es.enylrad.game.triviallaultimayapago;
 
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -24,22 +19,16 @@ import android.support.v7.app.AppCompatDialog;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.plus.Plus;
-import com.google.android.gms.plus.model.people.Person;
 import com.google.example.games.basegameutils.BaseGameUtils;
 import com.rey.material.widget.ProgressView;
-
-import java.io.InputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
@@ -103,12 +92,9 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        // [START shared_tracker]
         // Obtain the shared Tracker instance.
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
-        sendScreenImageName(getClass().getName());
-        // [END shared_tracker]
 
         //Habilita el control de sonido en la aplicación.
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -291,11 +277,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
 
             try {
-                if (Build.VERSION.SDK_INT == 23) {
-                    insertDummyContactWrapper();
-                } else {
-                    getProfileInformation();
-                }
                 menu_principal_fragment.gestionBotones(true); //Modificamos los botones
 
                 Log.d("Datos", String.valueOf(Build.VERSION.SDK_INT));
@@ -452,45 +433,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         return mDrawerLayout;
     }
 
-    ////////////////////////////////////////PROFILE INFORMATION///////////////////////////////////
-
-    /**
-     * Fetching user's information name, email, profile pic
-     */
-    private void getProfileInformation() {
-        try {
-            if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
-                Person currentPerson = Plus.PeopleApi
-                        .getCurrentPerson(mGoogleApiClient);
-                String personName = currentPerson.getDisplayName();
-                String personPhotoUrl = currentPerson.getImage().getUrl();
-                String personGooglePlusProfile = currentPerson.getUrl();
-                String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
-
-                Log.e(TAG, "Name: " + personName + ", plusProfile: "
-                        + personGooglePlusProfile + ", email: " + email
-                        + ", Image: " + personPhotoUrl);
-
-                txtName.setText(personName);
-
-                // by default the profile url gives 50x50 px image only
-                // we can replace the value with whatever dimension we want by
-                // replacing sz=X
-                personPhotoUrl = personPhotoUrl.substring(0,
-                        personPhotoUrl.length() - 2)
-                        + PROFILE_PIC_SIZE;
-
-                new LoadProfileImage(imgProfilePic).execute(personPhotoUrl);
-
-            } else {
-                Toast.makeText(getApplicationContext(),
-                        "Person information is null", Toast.LENGTH_LONG).show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     ////////////////////////////////////////INTERFACE//////////////////////////////////////////////
 
     @Override
@@ -503,85 +445,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         return (RelativeLayout) findViewById(R.id.actualizacion);
     }
 
-    /**
-     * Metodo para pedir permisos
-     */
-    @TargetApi(Build.VERSION_CODES.M)
-    private void insertDummyContactWrapper() {
-        int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.GET_ACCOUNTS);
-        if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.GET_ACCOUNTS},
-                    REQUEST_CODE_ASK_PERMISSIONS);
 
-            return;
-        } else {
-
-            getProfileInformation();
-        }
+    public Tracker getmTracker() {
+        return mTracker;
     }
-
-    ////////////////////////////////////////PERMISOS///////////////////////////////////////////////
-
-    /**
-     * Metodo para recoger el resultado de la decision en los permisos
-     *
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_ASK_PERMISSIONS:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission Granted
-                    getProfileInformation();
-                } else {
-                    // Permission Denied
-                    Toast.makeText(this, "No se mostrará ni foto, ni nombre el menu lateral :(", Toast.LENGTH_LONG).show();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
-
-    //Analytics
-    public void sendScreenImageName(String name) {
-        // [START screen_view_hit]
-        Log.i(TAG, "Setting screen name: " + name);
-        mTracker.setScreenName("Image~" + name);
-        mTracker.send(new HitBuilders.ScreenViewBuilder()
-                .build());
-        // [END screen_view_hit]
-    }
-
-    /**
-     * Background Async task to load user profile picture from url
-     */
-    private class LoadProfileImage extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public LoadProfileImage(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
-
 }

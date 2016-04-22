@@ -96,7 +96,8 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
         mProgressDialog.setVisibility(View.GONE);
         avisoActualizacion.setVisibility(View.GONE);
         fragment.botonesPulsables(true);
-        ((Main) activity).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        //((Main) activity).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        ((Main) activity).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     /**

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
 import java.io.IOException;
@@ -29,7 +30,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.BDTrivial;
 import es.enylrad.game.triviallaultimayapago.Main;
 import es.enylrad.game.triviallaultimayapago.Otros.StringMD;
@@ -91,12 +91,10 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
 
         this.view = inflater.inflate(R.layout.enviarpregunta_fragment, container, false);
 
-        // [START shared_tracker]
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) activity.getApplication();
-        mTracker = application.getDefaultTracker();
-        // [END shared_tracker]
-        activity.sendScreenImageName(getClass().getName());
+        this.mTracker = activity.getmTracker();
+        mTracker.setScreenName(getClass().getSimpleName());
+        mTracker.send(new HitBuilders.ScreenViewBuilder()
+                .build());
 
         configurarReferencias();
 
@@ -234,8 +232,20 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
             case R.id.gestion:
 
                 if (contenidos.getDisplayedChild() == 0) {
+
+                    mTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory("Enviar Pregunta")
+                            .setAction("Primer Formulario Completado")
+                            .build());
+
                     verificarFormulario();
                 } else {
+
+                    mTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory("Enviar Pregunta")
+                            .setAction("Pregunta Enviada")
+                            .build());
+
                     enviarPregunta();
                 }
                 break;

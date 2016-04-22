@@ -122,7 +122,8 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
             } else {
 
                 fragment.botonesPulsables(true);
-                ((Main) context).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                //((Main) context).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                ((Main) context).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
             }
         }
