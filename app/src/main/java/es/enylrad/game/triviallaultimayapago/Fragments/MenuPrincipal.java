@@ -122,7 +122,6 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
         enviar_preg = (ImageView) view.findViewById(R.id.enviar_preg);
 
 
-
     }
 
     private void configListener() {
@@ -280,7 +279,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
     /**
      * Configuración de las animaciones de la aplicación
      */
-    public void configurarAnimaciones() {
+    private void configurarAnimaciones() {
 
         //Animacion de inicio de la aplicación
         anim_presentacion.setAnimationListener(new Animation.AnimationListener() {

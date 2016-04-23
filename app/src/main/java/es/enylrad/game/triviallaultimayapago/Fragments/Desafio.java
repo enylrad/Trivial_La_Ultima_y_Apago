@@ -14,6 +14,7 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -194,7 +195,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     /**
      * Proceso para buscar pregunta nueva
      */
-    public void realizarPreguntaNueva() {
+    private void realizarPreguntaNueva() {
 
         mTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Desafio")
@@ -302,7 +303,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      *
      * @param pulsado
      */
-    public void respuestaCorrecta(int pulsado) {
+    private void respuestaCorrecta(int pulsado) {
 
         mTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Desafio")
@@ -362,7 +363,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      *
      * @param pulsado
      */
-    public void respuestaIncorrecta(int pulsado) {
+    private void respuestaIncorrecta(int pulsado) {
 
         mTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Desafio")
@@ -421,7 +422,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     /**
      * Puntuaciones que se sumaran dependiendo de los aciertos
      */
-    public void puntuacionRespuestasConsecutivas() {
+    private void puntuacionRespuestasConsecutivas() {
 
         if (aciertos_consecutivos == 0) {
             valor_acierto = 150;
@@ -437,7 +438,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
     }
 
-    public void incrementoEstadisticasCategoria(boolean acierto) {
+    private void incrementoEstadisticasCategoria(boolean acierto) {
 
         switch (id_categoria) {
 
@@ -487,7 +488,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
     }
 
-    public void ejecutarFinPartida() {
+    private void ejecutarFinPartida() {
 
 
         botonesActivos(false);
@@ -505,7 +506,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      *
      * @param positivo
      */
-    public void animacionVariacionPuntuacion(boolean positivo) {
+    private void animacionVariacionPuntuacion(boolean positivo) {
 
         Animation anim = AnimationUtils.loadAnimation(context, R.anim.animacion_puntuacion);
         Animation anim_min = AnimationUtils.loadAnimation(context, R.anim.animacion_resta);
@@ -536,7 +537,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     }
 
     ///////////////////////////////////////CONTROL Y GUARDADO /////////////////////////////////////
-    public void guardarPuntuaciones() {
+    private void guardarPuntuaciones() {
 
         if (context != null) {
 
@@ -547,7 +548,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
     }
 
-    public void guardarEstadisticasSharedpreferences() {
+    private void guardarEstadisticasSharedpreferences() {
 
         //Recogemos las estadisticas y sumamos a las actuales
         estadisticas.setRespondidas(context.getSharedpreferences().getInt("respondidas", Main.MODE_PRIVATE) + estadisticas.getRespondidas());
@@ -593,7 +594,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
     }
 
-    public void actualizarLogrosyMarcadores() {
+    private void actualizarLogrosyMarcadores() {
 
         if (Main.VERSION_BD > 25) {
 
@@ -714,7 +715,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      * Este proceso es para controlar el tiempo durante el modo desafío, una vez llegue ha cero finalizará
      * el Modo desafío
      */
-    public void tiempoDesafio() {
+    private void tiempoDesafio() {
 
         segundos_actuales = tiempo_inicial_desafio;
 
@@ -790,6 +791,8 @@ public class Desafio extends Fragment implements View.OnClickListener {
                         .setVariable("Tiempo partida")
                         .build());
 
+                Log.d("tiempo", String.valueOf(tiempo / 10));
+
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -810,7 +813,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      * Este proceso es para mostrar como el tiempo va subiendo durante la animación del inicio del
      * Modo desafío
      */
-    public void cargaTiempoDesafioInicio() {
+    private void cargaTiempoDesafioInicio() {
 
         cargaTiempo_inicio_thread = new Thread(new Runnable() {
 
@@ -946,7 +949,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     /**
      * Este metodo configurará las animaciones
      */
-    public void configurarAnimaciones() {
+    private void configurarAnimaciones() {
 
         //Animación que visualizará el fondo rojo y el nombre del modo
         anim_preparacion_fondo.setAnimationListener(new Animation.AnimationListener() {
@@ -1055,7 +1058,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      *
      * @return
      */
-    public int[] generarNumerosAleatoriosArray() {
+    private int[] generarNumerosAleatoriosArray() {
 
         int numeros[] = new int[4];
 
@@ -1082,7 +1085,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      *
      * @param accion
      */
-    public void botonesActivos(boolean accion) {
+    private void botonesActivos(boolean accion) {
 
         respuesta1.setClickable(accion);
         respuesta2.setClickable(accion);
@@ -1105,7 +1108,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      * Este metodo elige una categoría aleatoria de la base de datos y selecciona la imagen a mostrar
      * segun la categoría
      */
-    public void elegirCategoria() {
+    private void elegirCategoria() {
 
         id_categoria = ((int) (Math.random() * 7) + 1);
 
@@ -1163,7 +1166,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
     /**
      * Esto gestiona las imagenes que aparecen en el tablero cuando se seleccionan preguntas
      */
-    public void gestionarImagenesTablero() {
+    private void gestionarImagenesTablero() {
 
         switch (id_categoria) {
 
@@ -1626,6 +1629,8 @@ public class Desafio extends Fragment implements View.OnClickListener {
                 getFragmentManager().popBackStack();
 
             } catch (NullPointerException ignored) {
+
+            } catch (IllegalStateException ignored) {
 
             }
         }

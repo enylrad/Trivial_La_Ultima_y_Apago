@@ -88,6 +88,29 @@ public class Registros extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        extraerDatos();
+        setTextDatos();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+
+            case R.id.aceptar:
+
+                getFragmentManager().popBackStack();
+                activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
+                break;
+
+        }
+
+    }
+
+    private void extraerDatos() {
+
         //todo serializar todo esto
 
         estadisticas.setRespondidas(activity.getSharedpreferences().getInt("respondidas", Context.MODE_PRIVATE));
@@ -108,6 +131,10 @@ public class Registros extends Fragment implements View.OnClickListener {
         estadisticas.setShooter_acertada(activity.getSharedpreferences().getInt("shooter_acertada", Context.MODE_PRIVATE));
         estadisticas.setDeportes_acertada(activity.getSharedpreferences().getInt("deportes_acertada", Context.MODE_PRIVATE));
         estadisticas.setOtros_acertada(activity.getSharedpreferences().getInt("otros_acertada", Context.MODE_PRIVATE));
+
+    }
+
+    private void setTextDatos() {
 
         MetodosEstaticos.iniciarAnimacionContar(0, (int) estadisticas.getRespondidas(), 1000, respondidas);
 
@@ -183,22 +210,6 @@ public class Registros extends Fragment implements View.OnClickListener {
             MetodosEstaticos.iniciarAnimacionContar(0, (int) dato, 1000, otros, "%");
         } catch (ArithmeticException e) {
             otros.setText("0%");
-        }
-
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-
-            case R.id.aceptar:
-
-                getFragmentManager().popBackStack();
-                activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-
-                break;
-
         }
 
     }

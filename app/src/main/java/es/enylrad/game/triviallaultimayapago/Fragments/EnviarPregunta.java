@@ -254,7 +254,7 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void verificarFormulario() {
+    private void verificarFormulario() {
 
         AlertDialog aviso;
 
@@ -276,7 +276,7 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
 
     }
 
-    public void enviarPregunta() {
+    private void enviarPregunta() {
 
         AlertDialog aviso;
 
