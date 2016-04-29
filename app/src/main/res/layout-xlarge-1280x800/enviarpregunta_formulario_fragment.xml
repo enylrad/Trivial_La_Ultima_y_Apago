@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:background="@color/blanco"
+    android:orientation="vertical"
+    android:paddingTop="15dp">
+
+    <LinearLayout style="@style/EnviarPreguntaLinearLayout">
+
+        <TextView
+            style="@style/EnviarPreguntaTextViewDato"
+            android:text="@string/preg" />
+
+        <EditText
+            android:id="@+id/editpreg"
+            style="@style/EnviarPreguntaEditText"
+            android:hint="@string/preg_hint" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EnviarPreguntaLinearLayout">
+
+        <TextView
+            style="@style/EnviarPreguntaTextViewDato"
+            android:text="@string/resp1" />
+
+        <EditText
+            android:id="@+id/editresp1"
+            style="@style/EnviarPreguntaEditText"
+            android:hint="@string/resp1_hint" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EnviarPreguntaLinearLayout">
+
+        <TextView
+            style="@style/EnviarPreguntaTextViewDato"
+            android:text="@string/resp2" />
+
+        <EditText
+            android:id="@+id/editresp2"
+            style="@style/EnviarPreguntaEditText"
+            android:hint="@string/resp2_hint" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EnviarPreguntaLinearLayout">
+
+        <TextView
+            style="@style/EnviarPreguntaTextViewDato"
+            android:text="@string/resp3" />
+
+        <EditText
+            android:id="@+id/editresp3"
+            style="@style/EnviarPreguntaEditText"
+            android:hint="@string/resp3_hint" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EnviarPreguntaLinearLayout">
+
+        <TextView
+            style="@style/EnviarPreguntaTextViewDato"
+            android:text="@string/resp4" />
+
+        <EditText
+            android:id="@+id/editresp4"
+            style="@style/EnviarPreguntaEditText"
+            android:hint="@string/resp4_hint" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EnviarPreguntaLinearLayout">
+
+        <TextView
+            style="@style/EnviarPreguntaTextViewDato"
+            android:text="@string/dificultad" />
+
+        <Spinner
+            android:id="@+id/spinDif"
+            style="@style/EnviarPreguntaEditText"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EnviarPreguntaLinearLayout">
+
+        <TextView
+            style="@style/EnviarPreguntaTextViewDato"
+            android:text="@string/categoria" />
+
+        <Spinner
+            android:id="@+id/spinCat"
+            style="@style/EnviarPreguntaEditText"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/EnviarPreguntaLinearLayout">
+
+        <TextView
+            style="@style/EnviarPreguntaTextViewDato"
+            android:text="@string/juego" />
+
+        <EditText
+            android:id="@+id/editjuego"
+            style="@style/EnviarPreguntaEditText"
+            android:hint="@string/franquicia_hint" />
+
+    </LinearLayout>
+</LinearLayout>

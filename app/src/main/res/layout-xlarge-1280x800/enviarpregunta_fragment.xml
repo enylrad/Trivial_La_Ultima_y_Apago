@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayoutEnviar_Preguntas"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/rojogoogleP"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/titulo_enviar"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/blanco"
+        android:textSize="28sp" />
+
+    <ViewFlipper
+        android:id="@+id/contenido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cabecera">
+
+        <include layout="@layout/enviarpregunta_formulario_fragment" />
+
+        <include layout="@layout/enviarpregunta_correcta_fragment" />
+
+    </ViewFlipper>
+
+    <Button
+        android:id="@+id/gestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_boton_rojo"
+        android:gravity="center"
+        android:padding="20dp"
+        android:stateListAnimator="@null"
+        android:text="@string/aceptar"
+        android:textAllCaps="true"
+        android:textColor="@color/blanco"
+        android:textSize="20sp" />
+
+</RelativeLayout>

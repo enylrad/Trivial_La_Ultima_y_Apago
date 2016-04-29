@@ -1,0 +1,76 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="SombreadoTexto">
+        <item name="android:paddingLeft">4px</item>
+        <item name="android:paddingBottom">4px</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">3</item>
+        <item name="android:shadowDy">3</item>
+        <item name="android:shadowRadius">3</item>
+    </style>
+
+    <!-- estadisticas_fragment -->
+    <style name="EstadisticasLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:weightSum">100</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="EstadisticasTextViewDato">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">70</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="EstadisticasTextViewPorcentaje">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">30</item>
+        <item name="android:text">@string/ejemplo_porcentaje</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- enviar_pregunta -->
+    <style name="EnviarPreguntaLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:weightSum">100</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+    <style name="EnviarPreguntaTextViewDato">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">40</item>
+        <item name="android:gravity">center|left</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="EnviarPreguntaEditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">60</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">textCapSentences|textMultiLine</item>
+        <item name="android:maxLines">6</item>
+        <item name="android:scrollHorizontally">false</item>
+    </style>
+
+</resources>

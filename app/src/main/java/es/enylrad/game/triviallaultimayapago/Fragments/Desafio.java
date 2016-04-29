@@ -787,11 +787,11 @@ public class Desafio extends Fragment implements View.OnClickListener {
                 // Build and send a timing hit.
                 mTracker.send(new HitBuilders.TimingBuilder()
                         .setCategory("Desafio")
-                        .setValue(tiempo / 10)
+                        .setValue(tiempo * 100)
                         .setVariable("Tiempo partida")
                         .build());
 
-                Log.d("tiempo", String.valueOf(tiempo / 10));
+                Log.d("tiempo", String.valueOf(tiempo * 100));
 
                 context.runOnUiThread(new Runnable() {
                     @Override

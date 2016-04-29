@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/DibujoDesafio"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-60dp"
+        android:layout_marginTop="-20dp">
+
+        <ImageView
+            android:id="@+id/dibujo_tablero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_dibujo_tablero" />
+
+        <ImageView
+            android:id="@+id/tablero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_tablero" />
+
+
+        <ImageView
+            android:id="@+id/amarillo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_flecha_amarrilla" />
+
+        <ImageView
+            android:id="@+id/azul_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_flecha_azul_claro" />
+
+        <ImageView
+            android:id="@+id/azul_o"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_flecha_azul_oscura" />
+
+        <ImageView
+            android:id="@+id/naranja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_flecha_naranja" />
+
+        <ImageView
+            android:id="@+id/rojo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_flecha_roja" />
+
+        <ImageView
+            android:id="@+id/rosa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_flecha_rosa" />
+
+        <ImageView
+            android:id="@+id/verde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_flecha_verde" />
+
+        <TextView
+            android:id="@+id/punt_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingBottom="30dp"
+            android:text="Total"
+            android:textColor="@color/blanco"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/punt_suma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingBottom="30dp"
+            android:text="@string/SumaPuntuacion"
+            android:textColor="@color/blanco"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/ic_tema"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_centerInParent="true"
+            android:paddingTop="145dp"
+            android:src="@drawable/ic_estrategia" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/segundos"
+            style="@style/SombreadoTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparente"
+            android:paddingRight="20dp"
+            android:textColor="@color/negro"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/segundosV"
+            style="@style/SombreadoTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparente"
+            android:paddingRight="20dp"
+            android:textColor="@color/negro"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textoresultado"
+            style="@style/SombreadoTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/resultado"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:indeterminate="false"
+        android:max="600"
+        android:progressDrawable="@drawable/progressbar_color_green" />
+
+</LinearLayout>

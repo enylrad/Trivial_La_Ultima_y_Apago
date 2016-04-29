@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><!--content-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Contenido -->
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Pantallas emergentes -->
+
+    <FrameLayout
+        android:id="@+id/puntuaciones"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--Pantalla Emergente Actualización-->
+
+    <include
+        layout="@layout/main_actualizacion_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="280dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="300dp" />
+
+</RelativeLayout>
