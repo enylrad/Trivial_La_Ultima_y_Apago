@@ -121,5 +121,7 @@
     <string name="invitado">Invitado</string>
     <string name="ejemplo_porcentaje">0%</string>
     <string name="siguiente">Siguiente</string>
+    <string name="test">Test</string>
+    <string name="go">GO!</string>
 
 </resources>

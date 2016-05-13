@@ -3,7 +3,6 @@ package es.enylrad.game.triviallaultimayapago.Fragments;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -99,8 +98,6 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
         configurarReferencias();
 
         BDTrivial = activity.getBase_de_datos_trivial();
-
-        activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         spinner_categoria = ArrayAdapter.createFromResource(activity, R.array.categorias, android.R.layout.simple_spinner_item);
         spinner_dificultad = ArrayAdapter.createFromResource(activity, R.array.dificultad, android.R.layout.simple_spinner_item);
@@ -270,7 +267,7 @@ public class EnviarPregunta extends Fragment implements View.OnClickListener {
         } else {
 
             contenidos.setDisplayedChild(1);
-            gestion.setText("Enviar");
+            gestion.setText(getString(R.string.enviar));
 
         }
 

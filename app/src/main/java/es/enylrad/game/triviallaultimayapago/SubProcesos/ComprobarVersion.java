@@ -6,7 +6,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -55,7 +54,7 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
      * @param context
      * @return
      */
-    public static boolean comprobarConexionesWifiMobile(Activity context) {
+    private static boolean comprobarConexionesWifiMobile(Activity context) {
 
         boolean haveConnectedWifi = false;
         boolean haveConnectedMobile = false;
@@ -122,8 +121,6 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
             } else {
 
                 fragment.botonesPulsables(true);
-                //((Main) context).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                ((Main) context).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
             }
         }
@@ -170,7 +167,7 @@ public class ComprobarVersion extends AsyncTask<String, String, String> {
      *
      * @return
      */
-    public String mostrar() {
+    private String mostrar() {
 
         HttpURLConnection urlConnection = null;
         String resultado = "";

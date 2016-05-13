@@ -1,7 +1,7 @@
+/app/sonar-project.properties
 /app/google-services.json
 #built application files
 *.apk
-*.ap_
 
 # files for the dex VM
 *.dex
@@ -38,5 +38,5 @@ ids.xml
 #NDK
 obj/
 
-//Analytics
+# Analytics
 google-services.json

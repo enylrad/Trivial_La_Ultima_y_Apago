@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -38,8 +37,8 @@ import es.enylrad.game.triviallaultimayapago.R;
  */
 public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
 
+    private final BDTrivial db;
     private int version = -1;
-    private BDTrivial db;
     private Activity activity;
     private String direccion;
     private Comunicacion callback_main;
@@ -96,8 +95,6 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
         mProgressDialog.setVisibility(View.GONE);
         avisoActualizacion.setVisibility(View.GONE);
         fragment.botonesPulsables(true);
-        //((Main) activity).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        ((Main) activity).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     /**
@@ -209,7 +206,7 @@ public class BajarPreguntas extends AsyncTask<Void, Float, Void> {
      *
      * @return
      */
-    public String mostrar() {
+    private String mostrar() {
 
         HttpURLConnection urlConnection = null;
         String resultado = "";

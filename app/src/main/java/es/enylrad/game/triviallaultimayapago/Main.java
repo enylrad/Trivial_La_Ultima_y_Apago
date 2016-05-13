@@ -1,26 +1,20 @@
 package es.enylrad.game.triviallaultimayapago;
 
 
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialog;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
@@ -30,12 +24,9 @@ import com.google.android.gms.plus.Plus;
 import com.google.example.games.basegameutils.BaseGameUtils;
 import com.rey.material.widget.ProgressView;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import es.enylrad.game.triviallaultimayapago.Analytics.AnalyticsApplication;
 import es.enylrad.game.triviallaultimayapago.Fragments.Desafio;
-import es.enylrad.game.triviallaultimayapago.Fragments.EnviarPregunta;
 import es.enylrad.game.triviallaultimayapago.Fragments.MenuPrincipal;
-import es.enylrad.game.triviallaultimayapago.Fragments.Registros;
 import es.enylrad.game.triviallaultimayapago.Interfaces.Comunicacion;
 
 /**
@@ -50,16 +41,12 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     //PUNTUACIONES
     public final static int REQUEST_LEADERBOARD = 10002;
     public final static int RC_SIGN_IN = 9001;
-    //PERMISOS
-    public final static int REQUEST_CODE_ASK_PERMISSIONS = 123;
     //VERSION BASE DE DATOS
     /*Version de la base de datos inicial de la APP que se creo inicialmente, se ira modificando
     con actualizaciones. Este valor no se debe tocar*/
     public final static int BBDD_VERSION = 9;
     private static final String TAG = "MainActivity";
-    //PROFILE INFORMATION
-    // Profile pic image size in pixels
-    private static final int PROFILE_PIC_SIZE = 400;
+
     public static int VERSION_BD;
     private FragmentTransaction ft;
     private MenuPrincipal menu_principal_fragment;
@@ -73,15 +60,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     //BASE DE DATOS
     private BDTrivial base_de_datos_trivial;
 
-    //MENU LATERAL
-    private DrawerLayout mDrawerLayout;
-    private RelativeLayout btn_estadisticas;
-    private RelativeLayout btn_enviar_preg;
-    private RelativeLayout btn_about;
-
-    //PROFILE INFORMATION
-    private CircleImageView imgProfilePic;
-    private TextView txtName;
     /**
      * The {@link Tracker} used to record screen views.
      */
@@ -120,9 +98,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
         //Carga de la base de datos
         base_de_datos_trivial = new BDTrivial(this, VERSION_BD);
-
-        //Menu lateral
-        configurarDrawerMenu();
 
     }
 
@@ -165,12 +140,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
         //Si pulsamos el botón atras...
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-            //Controla que si el menu lateral esta abierto, al dar al boton atras lo cierre
-            if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-                closeDrawers();
-                return true;
-            }
 
             //Comprueba diversos eventos, si hay una animacion de inicio o final en el modo desafio no se permite volver atras
             //Si estamos en medio del desafío nos preguntará si estamos eguros
@@ -361,78 +330,6 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
     }
-
-
-    ///////////////////////////////////////////////MENU LATERAL//////////////////////////////////////
-
-    /**
-     * Configuración Menu lateral
-     */
-    private void configurarDrawerMenu() {
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.id_drawerlayout);
-
-        btn_estadisticas = (RelativeLayout) findViewById(R.id.boton_estadisticas);
-        btn_enviar_preg = (RelativeLayout) findViewById(R.id.boton_enviar_preg);
-        btn_about = (RelativeLayout) findViewById(R.id.boton_about);
-        imgProfilePic = (CircleImageView) findViewById(R.id.imagen_usuario);
-        txtName = (TextView) findViewById(R.id.nombre_usuario);
-
-        btn_estadisticas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ft = getSupportFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_go_in, R.anim.slide_go_out, R.anim.slide_back_in, R.anim.slide_back_out)
-                        .replace(R.id.container, new Registros(), Registros.TAG_FRAGMENT)
-                        .addToBackStack(MenuPrincipal.TAG_FRAGMENT);
-                ft.commit();
-            }
-        });
-
-        btn_enviar_preg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ft = getSupportFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_go_in, R.anim.slide_go_out, R.anim.slide_back_in, R.anim.slide_back_out)
-                        .replace(R.id.container, new EnviarPregunta(), EnviarPregunta.TAG_FRAGMENT)
-                        .addToBackStack(MenuPrincipal.TAG_FRAGMENT);
-                ft.commit();
-
-            }
-        });
-
-        btn_about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                try {
-
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://laultimayapago.wordpress.com/"));
-                    startActivity(i);
-
-                } catch (ActivityNotFoundException e) {
-
-                    e.printStackTrace();
-
-                }
-
-            }
-        });
-
-    }
-
-    public void openDrawer() {
-        mDrawerLayout.openDrawer(GravityCompat.START);
-    }
-
-    public void closeDrawers() {
-        mDrawerLayout.closeDrawers();
-    }
-
-    public DrawerLayout getDrawerLayout() {
-        return mDrawerLayout;
-    }
-
     ////////////////////////////////////////INTERFACE//////////////////////////////////////////////
 
     @Override

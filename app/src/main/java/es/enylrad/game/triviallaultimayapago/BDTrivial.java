@@ -111,7 +111,7 @@ public class BDTrivial extends SQLiteOpenHelper {
      *
      * @param db
      */
-    public void cargarPreguntas(SQLiteDatabase db) {
+    private void cargarPreguntas(SQLiteDatabase db) {
 
         db.execSQL("INSERT INTO pregunta " +
                 "VALUES " +
@@ -246,7 +246,7 @@ public class BDTrivial extends SQLiteOpenHelper {
      *
      * @param id_preg
      */
-    public void marcarPregunta(int id_preg) {
+    private void marcarPregunta(int id_preg) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -263,7 +263,7 @@ public class BDTrivial extends SQLiteOpenHelper {
      *
      * @param numcat
      */
-    public void resetearPreguntasCategoria(int numcat) {
+    private void resetearPreguntasCategoria(int numcat) {
 
         SQLiteDatabase db = getWritableDatabase();
 

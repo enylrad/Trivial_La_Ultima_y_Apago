@@ -3,6 +3,7 @@ package es.enylrad.game.triviallaultimayapago.Fragments;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.drawable.TransitionDrawable;
 import android.media.MediaPlayer;
@@ -13,7 +14,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -164,7 +164,6 @@ public class Desafio extends Fragment implements View.OnClickListener {
                 .build());
 
         this.bdTrivial = context.getBase_de_datos_trivial();
-        context.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         configurarReferencias();
         iniciarObjetos();
@@ -303,6 +302,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      *
      * @param pulsado
      */
+    @SuppressLint("SetTextI18n")
     private void respuestaCorrecta(int pulsado) {
 
         mTracker.send(new HitBuilders.EventBuilder()
@@ -363,6 +363,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
      *
      * @param pulsado
      */
+    @SuppressLint("SetTextI18n")
     private void respuestaIncorrecta(int pulsado) {
 
         mTracker.send(new HitBuilders.EventBuilder()
@@ -488,6 +489,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void ejecutarFinPartida() {
 
 
@@ -1337,7 +1339,7 @@ public class Desafio extends Fragment implements View.OnClickListener {
 
             } else if (values[0] < 10) {
 
-                txt_cuenta_atras.setText("GO!");
+                txt_cuenta_atras.setText(R.string.go);
 
             } else if (values[0] >= 10) {
 
@@ -1629,8 +1631,6 @@ public class Desafio extends Fragment implements View.OnClickListener {
                 getFragmentManager().popBackStack();
 
             } catch (NullPointerException ignored) {
-
-            } catch (IllegalStateException ignored) {
 
             }
         }

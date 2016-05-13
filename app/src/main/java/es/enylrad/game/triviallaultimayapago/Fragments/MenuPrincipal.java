@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +40,6 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
     //Botones con Imagenes
     private ImageButton logros;
     private ImageButton marcad;
-    private ImageButton mostrar_menu_lateral;
     private ImageView estadisticas;
     private ImageView enviar_preg;
 
@@ -81,9 +79,6 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
                 .build());
 
         configurarReferencias();
-
-        //activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         return view;
     }
@@ -148,11 +143,11 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
             //Botón de Desafio
             case R.id.desafio:
 
-                ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.slide_back_in, R.anim.slide_back_out, R.anim.slide_go_in, R.anim.slide_go_out);
-                ft.replace(R.id.container, new Desafio(), Desafio.TAG_FRAGMENT);
-                ft.addToBackStack(TAG_FRAGMENT);
-                ft.commit();
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_back_in, R.anim.slide_back_out, R.anim.slide_go_in, R.anim.slide_go_out)
+                        .replace(R.id.container, new Desafio(), Desafio.TAG_FRAGMENT)
+                        .addToBackStack(TAG_FRAGMENT)
+                        .commit();
 
                 break;
 
@@ -222,20 +217,20 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
 
             case R.id.enviar_preg:
 
-                ft = getFragmentManager().beginTransaction()
+                getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_go_in, R.anim.slide_go_out, R.anim.slide_back_in, R.anim.slide_back_out)
                         .replace(R.id.container, new EnviarPregunta(), EnviarPregunta.TAG_FRAGMENT)
-                        .addToBackStack(MenuPrincipal.TAG_FRAGMENT);
-                ft.commit();
+                        .addToBackStack(MenuPrincipal.TAG_FRAGMENT)
+                        .commit();
                 break;
 
             case R.id.estadisticas:
 
-                ft = getFragmentManager().beginTransaction()
+                getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_go_in, R.anim.slide_go_out, R.anim.slide_back_in, R.anim.slide_back_out)
                         .replace(R.id.container, new Registros(), Registros.TAG_FRAGMENT)
-                        .addToBackStack(MenuPrincipal.TAG_FRAGMENT);
-                ft.commit();
+                        .addToBackStack(MenuPrincipal.TAG_FRAGMENT)
+                        .commit();
 
                 break;
 
@@ -289,8 +284,6 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener {
                 presentacion.setVisibility(View.VISIBLE);
 
                 botonesPulsables(false);
-
-                activity.getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
             }
 

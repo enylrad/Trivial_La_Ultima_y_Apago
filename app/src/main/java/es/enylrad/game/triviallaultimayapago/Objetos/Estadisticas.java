@@ -2,9 +2,6 @@ package es.enylrad.game.triviallaultimayapago.Objetos;
 
 import java.io.Serializable;
 
-/**
- * Created by enylr on 10/04/2016.
- */
 public class Estadisticas implements Serializable {
 
     //Variables estadisticas
@@ -27,25 +24,6 @@ public class Estadisticas implements Serializable {
 
     public Estadisticas() {
 
-    }
-
-    public Estadisticas(double acertadas, double deportes, double deportes_acertada, double estrategia, double estrategia_acertada, double lucha, double lucha_acertada, double otros, double otros_acertada, double plataf_avent, double plataf_avent_acertada, double respondidas, double rpg_aventuras, double rpg_aventuras_acertada, double shooter, double shooter_acertada) {
-        this.acertadas = acertadas;
-        this.deportes = deportes;
-        this.deportes_acertada = deportes_acertada;
-        this.estrategia = estrategia;
-        this.estrategia_acertada = estrategia_acertada;
-        this.lucha = lucha;
-        this.lucha_acertada = lucha_acertada;
-        this.otros = otros;
-        this.otros_acertada = otros_acertada;
-        this.plataf_avent = plataf_avent;
-        this.plataf_avent_acertada = plataf_avent_acertada;
-        this.respondidas = respondidas;
-        this.rpg_aventuras = rpg_aventuras;
-        this.rpg_aventuras_acertada = rpg_aventuras_acertada;
-        this.shooter = shooter;
-        this.shooter_acertada = shooter_acertada;
     }
 
     public double getShooter_acertada() {
@@ -124,11 +102,11 @@ public class Estadisticas implements Serializable {
         return otros_acertada;
     }
 
-    public void setOtros_acertada(int otros_acertada) {
+    public void setOtros_acertada(double otros_acertada) {
         this.otros_acertada = otros_acertada;
     }
 
-    public void setOtros_acertada(double otros_acertada) {
+    public void setOtros_acertada(int otros_acertada) {
         this.otros_acertada = otros_acertada;
     }
 
